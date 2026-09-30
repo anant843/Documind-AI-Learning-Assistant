@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+@theme {
+  --color-emerald-50: #eef2ff;
+  --color-emerald-100: #e0e7ff;
+  --color-emerald-200: #c7d2fe;
+  --color-emerald-300: #a5b4fc;
+  --color-emerald-400: #818cf8;
+  --color-emerald-500: #6366f1;
+  --color-emerald-600: #4f46e5;
+  --color-emerald-700: #4338ca;
+  --color-emerald-800: #3730a3;
+  --color-emerald-900: #312e81;
+  --color-emerald-950: #1e1b4b;
+
+  --color-teal-50: #ecfeff;
+  --color-teal-100: #cffafe;
+  --color-teal-200: #a5f3fc;
+  --color-teal-300: #67e8f9;
+  --color-teal-400: #22d3ee;
+  --color-teal-500: #06b6d4;
+  --color-teal-600: #0891b2;
+  --color-teal-700: #0e7490;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Global Dark Theme Engine */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0b0f17 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .bg-slate-100,
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/70,
+html.dark .bg-slate-50\/80,
+html.dark .bg-slate-50\/60,
+html.dark .bg-slate-50\/50,
+html.dark .bg-slate-50\/40,
+html.dark .bg-slate-50\/30 {
+  background-color: #0b0f17 !important;
+}
+
+html.dark main {
+  background-color: #0b0f17 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark aside,
+html.dark header,
+html.dark .bg-white,
+html.dark .bg-white\/95,
+html.dark .bg-white\/90,
+html.dark .bg-white\/80,
+html.dark .bg-white\/70,
+html.dark .bg-white\/60,
+html.dark .bg-white\/50 {
+  background-color: #111827 !important;
+  border-color: #1f2937 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-neutral-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+html.dark .border-slate-200,
+html.dark .border-slate-100 {
+  border-color: #1f2937 !important;
+}
+
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-100:hover {
+  background-color: #1f2937 !important;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-slate-200 {
+  background-color: #374151 !important;
+  color: #e2e8f0 !important;
+}
+
+html.dark .shadow-sm,
+html.dark .shadow-xs,
+html.dark .shadow-md,
+html.dark .shadow-lg {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Comprehensive Dark Mode Color System (Pastel Tints & Badges) */
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-50\/50,
+html.dark .bg-indigo-50,
+html.dark .bg-teal-50 {
+  background-color: rgba(99, 102, 241, 0.16) !important;
+  color: #c7d2fe !important;
+}
+
+html.dark .bg-emerald-100,
+html.dark .bg-indigo-100,
+html.dark .bg-teal-100 {
+  background-color: rgba(99, 102, 241, 0.28) !important;
+  color: #e0e7ff !important;
+}
+
+html.dark .text-emerald-700,
+html.dark .text-emerald-800,
+html.dark .text-indigo-700,
+html.dark .text-indigo-800,
+html.dark .text-indigo-900 {
+  color: #a5b4fc !important;
+}
+
+html.dark .text-emerald-600,
+html.dark .text-indigo-600 {
+  color: #818cf8 !important;
+}
+
+html.dark .border-emerald-100,
+html.dark .border-emerald-200,
+html.dark .border-emerald-300,
+html.dark .border-indigo-100,
+html.dark .border-indigo-200 {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Dark Mode Weak Topics & Rose Alert Elements */
+html.dark .bg-rose-50,
+html.dark .bg-rose-50\/60 {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+  color: #fecdd3 !important;
+}
+
+html.dark .bg-rose-100 {
+  background-color: rgba(244, 63, 94, 0.25) !important;
+  color: #fda4af !important;
+}
+
+html.dark .text-rose-800,
+html.dark .text-rose-700 {
+  color: #fda4af !important;
+}
+
+html.dark .text-rose-600 {
+  color: #fb7185 !important;
+}
+
+html.dark .border-rose-100,
+html.dark .border-rose-200 {
+  border-color: rgba(244, 63, 94, 0.35) !important;
+}
+
+html.dark .from-rose-50,
+html.dark .from-rose-50\/90 {
+  --tw-gradient-from: #1e131d !important;
+  --tw-gradient-stops: #1e131d, #141724 !important;
+}
+
+html.dark .to-orange-50\/40 {
+  --tw-gradient-to: rgba(20, 23, 36, 0.8) !important;
+}
+
+/* Dark Mode Amber Elements & Badges */
+html.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #fde68a !important;
+}
+
+html.dark .border-amber-100,
+html.dark .border-amber-200 {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+html.dark .text-amber-800,
+html.dark .text-amber-700,
+html.dark .text-amber-600 {
+  color: #fbbf24 !important;
+}
+
+/* Card Gradients & Danger Elements in Dark Mode */
+html.dark .from-white {
+  --tw-gradient-from: #111827 !important;
+  --tw-gradient-stops: #111827, #0f172a !important;
+}
+html.dark .to-slate-50 {
+  --tw-gradient-to: #0f172a !important;
+}
+
+html.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+}
+html.dark .border-red-100,
+html.dark .border-red-200 {
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Custom Flashcard Elevation & Themes */
+.flashcard-front {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.dark .flashcard-front {
+  background: linear-gradient(145deg, #1e293b 0%, #172033 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.35) !important;
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.15) !important;
+}
+
+.flashcard-back {
+  background: linear-gradient(145deg, #6366f1 0%, #06b6d4 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3) !important;
+}
+
+html.dark .flashcard-back {
+  background: linear-gradient(145deg, #312e81 0%, #164e63 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.45) !important;
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Print styling for 1-Click PDF Export */
+@media print {
+  aside,
+  nav,
+  header,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  body,
+  main,
+  #root {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .printable-card {
+    border: 1px solid #d1d5db !important;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: none !important;
+  }
+}
