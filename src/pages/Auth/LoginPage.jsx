@@ -1,132 +1,39 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext.jsx'
-import authService from '../../services/authService.js'
-import { BrainCircuit, Mail, Lock, ArrowRight } from 'lucide-react'
-import toast from 'react-hot-toast'
-import Logo from '../../Components/common/Logo'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Mail, Lock } from "lucide-react";
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext";
+import authService from "../../services/authService";
+import Logo from "../../Components/common/Logo";
+import Button from "../../Components/common/Button";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [focusedField, setFocusedField] = useState(null);
-
-  const navigate = useNavigate();
-  const { login } = useAuth();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      const { token, user } = await authService.login(email, password);
-      login(user, token);
-      toast.success("Login successful");
-      navigate("/dashboard");
-    } catch (error) {
-      setError(error.message || "Login failed, please check your credentials");
-      toast.error(error.message || "Login failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl space-y-6">
-          {/* Header inside the card */}
-          <div className="flex flex-col items-start gap-4">
-            <Logo showSubtitle={true} />
-            <div className="space-y-1">
-              <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
-              <p className="text-slate-600 text-sm">Sign in to continue your journey.</p>
-            </div>
-          </div>
-
-          {/* Form fields */}
-          <div className="space-y-5">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-800">Email Address</label>
-              <div className="relative">
-                <div className={`absolute inset-y-0 left-0 flex pl-4 items-center pointer-events-none transition-colors duration-200 ${focusedField === 'email' ? 'text-emerald-500' : 'text-slate-400'}`}>
-                  <Mail className="h-4 w-4" strokeWidth={2} />
-                </div>
-                <input
-                  type="email"
-                  className={`w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 ${focusedField === 'email' ? 'border-emerald-500/60' : 'border-slate-200'}`}
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onFocus={() => setFocusedField('email')}
-                  onBlur={() => setFocusedField(null)}
-                  autoComplete="email"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-800">Password</label>
-              <div className="relative">
-                <div className={`absolute inset-y-0 left-0 flex pl-4 items-center pointer-events-none transition-colors duration-200 ${focusedField === 'password' ? 'text-emerald-500' : 'text-slate-400'}`}>
-                  <Lock className="h-4 w-4" strokeWidth={2} />
-                </div>
-                <input
-                  type="password"
-                  className={`w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 ${focusedField === 'password' ? 'border-emerald-500/60' : 'border-slate-200'}`}
-                  placeholder="********"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onFocus={() => setFocusedField('password')}
-                  onBlur={() => setFocusedField(null)}
-                  autoComplete="current-password"
-                />
-              </div>
-            </div>
-
-            {/* error message */}
-            {error && (
-              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                {error}
-              </div>
-            )}
-
-            {/* submit button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-emerald-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-70"
-            >
-              {loading ? (
-                <span className="flex items-center gap-2">
-                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-emerald-900 border-t-transparent" />
-                  Signing in...
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">Sign in <ArrowRight className="h-4 w-4" strokeWidth={2.5} /></span>
-              )}
-            </button>
-
-            {/* footer  */}
-            <div className="flex items-center justify-start text-sm text-slate-600">
-              <span>
-                Don't have an account?{' '}
-                <Link to="/register" className="text-emerald-600 hover:text-emerald-500 font-semibold">
-                  Sign up
-                </Link>
-              </span>
-            </div>
-          </div>
-
-          <div className="text-center text-xs text-slate-500">
-            By continuing you agree to our Terms of Service and Privacy Policy.
-          </div>
-        </form>
+  const [email,setEmail]=useState(""); const [password,setPassword]=useState(""); const [error,setError]=useState(""); const [loading,setLoading]=useState(false);
+  const navigate=useNavigate(); const { login }=useAuth();
+  const submit=async(e)=>{e.preventDefault();setLoading(true);setError("");try{const {token,user}=await authService.login(email,password);login(user,token);toast.success("Signed in");navigate("/dashboard");}catch(err){setError(err.message||"Check your email and password.");}finally{setLoading(false);}};
+  return <main className="grid min-h-[100dvh] bg-[#f5f7fa] lg:grid-cols-[minmax(320px,0.85fr)_1.15fr]">
+    <section className="hidden border-r border-slate-200 bg-slate-950 p-12 text-white lg:flex lg:flex-col">
+      <Logo showSubtitle={false} className="[&_div]:!text-white" />
+      <div className="my-auto max-w-md">
+        <p className="text-4xl font-bold leading-[1.12] tracking-[-0.035em]">Your reading becomes a working study system.</p>
+        <p className="mt-5 max-w-sm text-base leading-7 text-slate-400">Keep PDFs, grounded answers, flashcards, and quizzes connected to the source material.</p>
       </div>
-    </div>
-  )
-}
-
+      <p className="text-xs text-slate-500">Answers stay tied to your uploaded documents.</p>
+    </section>
+    <section className="flex items-center justify-center p-5 sm:p-10">
+      <div className="w-full max-w-md">
+        <div className="mb-10 lg:hidden"><Logo /></div>
+        <h1 className="text-3xl font-bold tracking-[-0.03em] text-slate-950">Welcome back</h1>
+        <p className="mt-2 text-sm leading-6 text-slate-600">Sign in to continue with your documents and study sessions.</p>
+        <form onSubmit={submit} className="mt-8 space-y-5">
+          <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-800">Email</span><div className="relative"><Mail className="absolute left-3 top-3.5 h-4 w-4 text-slate-400"/><input required type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-10 pr-3 text-slate-950 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/15"/></div></label>
+          <label className="block"><span className="mb-2 block text-sm font-semibold text-slate-800">Password</span><div className="relative"><Lock className="absolute left-3 top-3.5 h-4 w-4 text-slate-400"/><input required type="password" autoComplete="current-password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Your password" className="h-11 w-full rounded-lg border border-slate-300 bg-white pl-10 pr-3 text-slate-950 shadow-sm placeholder:text-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/15"/></div></label>
+          {error&&<div role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-800">{error}</div>}
+          <Button type="submit" disabled={loading} className="w-full">{loading?"Signing in…":"Sign in"}</Button>
+        </form>
+        <p className="mt-6 text-sm text-slate-600">New to DocuMind? <Link to="/register" className="font-semibold text-blue-700 underline-offset-4 hover:underline">Create an account</Link></p>
+      </div>
+    </section>
+  </main>;
+};
 export default LoginPage;

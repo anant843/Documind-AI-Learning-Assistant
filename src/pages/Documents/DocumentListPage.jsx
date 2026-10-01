@@ -197,7 +197,7 @@ return (
     {/* Upload Modal */}
     {isUploadModalOpen && (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-        <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl border border-slate-200 p-6 relative">
+        <div className="w-full max-w-xl rounded-xl bg-white shadow-sm border border-slate-200 p-6 relative">
           <button
             onClick={() => setIsUploadModalOpen(false)}
             className="absolute right-4 top-4 p-2 rounded-full hover:bg-slate-100"
@@ -264,7 +264,7 @@ return (
     {/* Delete confirmation modal */}
     {isDeleteModalOpen && (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-        <div className="w-full max-w-md rounded-2xl bg-white shadow-2xl border border-slate-200 p-6 relative">
+        <div className="w-full max-w-md rounded-xl bg-white shadow-sm border border-slate-200 p-6 relative">
           <button
             onClick={() => setIsDeleteModalOpen(false)}
             className="absolute right-4 top-4 p-2 rounded-full hover:bg-slate-100"

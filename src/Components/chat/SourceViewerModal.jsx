@@ -25,7 +25,7 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
         {/* Header Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
           <div className="flex items-center gap-2 min-w-0">
-            <div className="h-8 w-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+            <div className="h-8 w-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
               <FileText className="h-4 w-4" />
             </div>
             <div className="min-w-0">
@@ -39,7 +39,7 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800/80 px-2.5 py-0.5 text-xs font-bold text-indigo-700 dark:text-indigo-300">
+            <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/80 px-2.5 py-0.5 text-xs font-bold text-blue-700 dark:text-blue-300">
               <Bookmark className="h-3 w-3" /> Page {page}
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800/80 px-2.5 py-0.5 text-xs font-bold text-emerald-700 dark:text-emerald-300">

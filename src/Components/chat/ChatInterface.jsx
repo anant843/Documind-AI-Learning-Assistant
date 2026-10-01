@@ -175,9 +175,9 @@ const ChatInterface = ({ onNavigateToPage = null }) => {
                     </div>
                 )}
                 <div
-                    className={`max-w-2xl p-4 rounded-2xl shadow-sm transition ${
+                    className={`max-w-2xl p-4 rounded-xl shadow-sm transition ${
                         isUser
-                            ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-tr-none'
+                            ? 'bg-slate-900   text-white rounded-tr-none'
                             : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-tl-none'
                     }`}
                 >
@@ -232,7 +232,7 @@ const ChatInterface = ({ onNavigateToPage = null }) => {
 
     if (initialLoading) {
         return (
-            <div className="flex flex-col w-full h-[70vh] max-h-[70vh] bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <div className="flex flex-col w-full h-[70vh] max-h-[70vh] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
                 <div className="flex-1 overflow-y-auto p-6 flex items-center justify-center text-slate-500">
                     <div className="flex items-center gap-3">
                         <MessageSquare strokeWidth={2} className="h-5 w-5 text-emerald-600 animate-pulse" />
@@ -247,12 +247,12 @@ const ChatInterface = ({ onNavigateToPage = null }) => {
     }
 
     return (
-        <div className="relative flex flex-col w-full h-[70vh] max-h-[70vh] bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="relative flex flex-col w-full h-[70vh] max-h-[70vh] bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
             {/* Messages area */}
             <div ref={messagesContainerRef} className="flex-1 min-h-0 overflow-y-auto p-5 space-y-4 bg-slate-50/40">
                 {history.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-full text-center text-slate-500 max-w-sm mx-auto p-6">
-                        <div className="h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 shadow-inner">
+                        <div className="h-12 w-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 shadow-inner">
                             <Sparkles className="h-6 w-6" />
                         </div>
                         <h4 className="text-base font-semibold text-slate-800">Ask Document Questions</h4>
@@ -302,7 +302,7 @@ const ChatInterface = ({ onNavigateToPage = null }) => {
                 <button
                     type="submit"
                     disabled={loading || !message.trim()}
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-sm hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50 transition"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900   text-white shadow-sm hover: hover: disabled:opacity-50 transition"
                 >
                     {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                 </button>

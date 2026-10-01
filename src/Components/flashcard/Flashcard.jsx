@@ -42,13 +42,13 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
             >
                 {/* Front Side (Question) */}
                 <div
-                    className="flashcard-front absolute inset-0 rounded-3xl p-6 md:p-8 flex flex-col justify-between overflow-hidden"
+                    className="flashcard-front absolute inset-0 rounded-xl p-6 md:p-8 flex flex-col justify-between overflow-hidden"
                     style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-indigo-500 via-teal-400 to-emerald-400" />
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-slate-900   " />
 
                     <div className="flex items-center justify-between gap-3 border-b border-slate-200/80 dark:border-slate-700/80 pb-3">
-                        <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/15 dark:bg-indigo-400/20 px-3 py-1 text-xs font-bold text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
+                        <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 dark:bg-blue-400/20 px-3 py-1 text-xs font-bold text-blue-700 dark:text-blue-300 border border-blue-500/30">
                             <Sparkles className="h-3.5 w-3.5" /> Question
                         </div>
                         <div className="flex items-center gap-2">
@@ -74,7 +74,7 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
                     <div className="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400 border-t border-slate-200/80 dark:border-slate-700/80 pt-3">
                         <span>Click anywhere to flip</span>
-                        <span className="inline-flex items-center gap-1 text-indigo-600 dark:text-teal-400 font-semibold">
+                        <span className="inline-flex items-center gap-1 text-blue-600 dark:text-teal-400 font-semibold">
                             <RotateCcw className="h-3.5 w-3.5" /> Reveal answer
                         </span>
                     </div>
@@ -82,10 +82,10 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
                 {/* Back Side (Answer) */}
                 <div
-                    className="flashcard-back absolute inset-0 rotateY-180 rounded-3xl p-6 md:p-8 text-white flex flex-col justify-between overflow-hidden"
+                    className="flashcard-back absolute inset-0 rotateY-180 rounded-xl p-6 md:p-8 text-white flex flex-col justify-between overflow-hidden"
                     style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                 >
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400" />
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-slate-900   " />
 
                     <div className="flex items-center justify-between gap-3 border-b border-white/20 pb-3">
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-white">

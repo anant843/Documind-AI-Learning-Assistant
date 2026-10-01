@@ -137,7 +137,7 @@ const QuizTakePage = () => {
         return (
             <div className="max-w-2xl mx-auto text-center py-16">
                 <p className="text-slate-500 dark:text-slate-400">No quiz questions available for this document.</p>
-                <Link to="/documents" className="mt-4 inline-block text-sm text-indigo-600 dark:text-indigo-400 font-semibold">
+                <Link to="/documents" className="mt-4 inline-block text-sm text-blue-600 dark:text-blue-400 font-semibold">
                     ← Back to Documents
                 </Link>
             </div>
@@ -172,7 +172,7 @@ const QuizTakePage = () => {
             <PageHeader title={quiz.title || "Document Quiz"} />
 
             {/* Main Interactive Card */}
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm space-y-6">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm space-y-6">
                 
                 {/* Progress Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -185,7 +185,7 @@ const QuizTakePage = () => {
                     <div className="w-full sm:w-60">
                         <div className="h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                             <div
-                                className="h-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 transition-all duration-300"
+                                className="h-2 rounded-full bg-slate-900    transition-all duration-300"
                                 style={{ width: `${progressPercent}%` }}
                             />
                         </div>
@@ -193,13 +193,13 @@ const QuizTakePage = () => {
                 </div>
 
                 {/* Question Stem Box */}
-                <div className="rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/50 p-5 sm:p-6">
+                <div className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/50 p-5 sm:p-6">
                     <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                        <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                             Question {currentQuestionIndex + 1}
                         </span>
                         {currentQuestion?.difficulty && (
-                            <span className="rounded-full bg-indigo-100 dark:bg-indigo-950/60 px-2.5 py-0.5 text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 capitalize">
+                            <span className="rounded-full bg-blue-100 dark:bg-blue-950/60 px-2.5 py-0.5 text-[11px] font-semibold text-blue-700 dark:text-blue-300 capitalize">
                                 {currentQuestion.difficulty}
                             </span>
                         )}
@@ -220,7 +220,7 @@ const QuizTakePage = () => {
                             <label
                                 key={optId || idx}
                                 onClick={() => handleOptionSelect(currentQuestionIndex, optId)}
-                                className={`flex cursor-pointer items-center justify-between rounded-2xl border p-4 transition-all ${
+                                className={`flex cursor-pointer items-center justify-between rounded-xl border p-4 transition-all ${
                                     isSelected
                                         ? 'border-emerald-500 bg-emerald-50/70 dark:bg-emerald-950/30 ring-2 ring-emerald-500/20 text-slate-900 dark:text-white shadow-xs'
                                         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
@@ -267,7 +267,7 @@ const QuizTakePage = () => {
                                     onClick={() => setCurrentQuestionIndex(index)}
                                     className={`h-9 w-9 rounded-xl border text-xs font-bold transition ${
                                         isCurrent
-                                            ? 'border-indigo-600 bg-indigo-600 text-white shadow-xs scale-105'
+                                            ? 'border-blue-600 bg-blue-600 text-white shadow-xs scale-105'
                                             : isAnswered
                                                 ? 'border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
                                                 : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600'

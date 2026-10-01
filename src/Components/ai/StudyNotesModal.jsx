@@ -63,12 +63,12 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
     ];
 
     return (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
+        <div className="fixed inset-0 bg-slate-900/60  z-50 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
                 {/* Modal Header */}
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-900/90 no-print">
                     <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-cyan-400 border border-indigo-100 dark:border-indigo-800/40 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-100 dark:border-blue-800/40 flex items-center justify-center">
                             <BookOpen className="h-5 w-5" />
                         </div>
                         <div>
@@ -110,7 +110,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             onClick={() => setActiveTab(tab.id)}
                             className={`py-3 px-3 text-xs font-bold border-b-2 whitespace-nowrap transition flex items-center gap-1.5 ${
                                 activeTab === tab.id
-                                    ? 'border-indigo-600 dark:border-cyan-400 text-indigo-600 dark:text-cyan-400'
+                                    ? 'border-blue-600 dark:border-cyan-400 text-blue-600 dark:text-cyan-400'
                                     : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                             }`}
                         >
@@ -128,7 +128,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             <p className="text-xs font-medium">Synthesizing comprehensive study notes, formulas & FAQs...</p>
                         </div>
                     ) : (
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs leading-relaxed text-sm text-slate-800 dark:text-slate-200 printable-card">
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs leading-relaxed text-sm text-slate-800 dark:text-slate-200 printable-card">
                             <MarkdownRenderer content={getContent()} />
                         </div>
                     )}
@@ -139,7 +139,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                     <span>Generated with grounding from document context</span>
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition"
+                        className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-xl text-xs font-semibold transition"
                     >
                         Done
                     </button>

@@ -54,7 +54,7 @@ const QuizResultPage = () => {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center text-center space-y-4">
                 <p className="text-slate-500 dark:text-slate-400">No quiz results available.</p>
-                <Link to="/documents" className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                <Link to="/documents" className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                     ← Return to Documents
                 </Link>
             </div>
@@ -72,7 +72,7 @@ const QuizResultPage = () => {
             return {
                 title: "Outstanding Mastery!",
                 desc: "You demonstrated deep understanding of the concepts in this document.",
-                gradient: "from-emerald-500 to-teal-500",
+                gradient: " ",
                 badgeBg: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30"
             }
         }
@@ -80,14 +80,14 @@ const QuizResultPage = () => {
             return {
                 title: "Solid Comprehension!",
                 desc: "Good grasp of core concepts. Review the explanations below to refine weak areas.",
-                gradient: "from-amber-500 to-orange-500",
+                gradient: " ",
                 badgeBg: "bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30"
             }
         }
         return {
             title: "Needs Revision",
             desc: "Take a moment to review the document and re-attempt the quiz to reinforce key concepts.",
-            gradient: "from-rose-500 to-red-500",
+            gradient: " ",
             badgeBg: "bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/30"
         }
     }
@@ -129,7 +129,7 @@ const QuizResultPage = () => {
             {/* Performance Hero & Analytics Cards */}
             <div className="grid gap-6 md:grid-cols-[2fr,1fr]">
                 {/* Score Hero */}
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 shadow-sm">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-7 shadow-sm">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ${feedback.badgeBg}`}>
@@ -144,7 +144,7 @@ const QuizResultPage = () => {
                             </p>
                         </div>
 
-                        <div className={`h-16 w-16 rounded-2xl bg-gradient-to-br ${feedback.gradient} text-white flex items-center justify-center shadow-lg shrink-0`}>
+                        <div className={`h-16 w-16 rounded-xl bg-slate-900 ${feedback.gradient} text-white flex items-center justify-center shadow-sm shrink-0`}>
                             <Trophy className="h-8 w-8" />
                         </div>
                     </div>
@@ -152,7 +152,7 @@ const QuizResultPage = () => {
                     <div className="mt-6">
                         <div className="h-3 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                             <div 
-                                className={`h-3 rounded-full bg-gradient-to-r ${feedback.gradient} transition-all duration-700`} 
+                                className={`h-3 rounded-full bg-slate-900 ${feedback.gradient} transition-all duration-700`} 
                                 style={{ width: `${score}%` }} 
                             />
                         </div>
@@ -160,9 +160,9 @@ const QuizResultPage = () => {
                 </div>
 
                 {/* Summary Metrics */}
-                <div className="space-y-3.5 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between">
+                <div className="space-y-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900 p-6 shadow-sm flex flex-col justify-between">
                     <div className="flex items-center gap-2.5">
-                        <Target className="h-5 w-5 text-indigo-500 dark:text-indigo-400" />
+                        <Target className="h-5 w-5 text-blue-500 dark:text-blue-400" />
                         <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                             Assessment Summary
                         </h3>
@@ -195,9 +195,9 @@ const QuizResultPage = () => {
             </div>
 
             {/* Detailed Question Review Section */}
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm space-y-6">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm space-y-6">
                 <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
-                    <BookOpen className="h-5 w-5 text-indigo-500 dark:text-indigo-400" />
+                    <BookOpen className="h-5 w-5 text-blue-500 dark:text-blue-400" />
                     <div>
                         <h3 className="text-lg font-bold text-slate-900 dark:text-white">Document Grounded Review</h3>
                         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
@@ -215,7 +215,7 @@ const QuizResultPage = () => {
                         return (
                             <div
                                 key={item?._id || `result-q-${index}`}
-                                className={`rounded-2xl border p-5 sm:p-6 transition ${
+                                className={`rounded-xl border p-5 sm:p-6 transition ${
                                     isCorrect
                                         ? 'border-emerald-500/30 bg-emerald-50/30 dark:bg-emerald-950/20'
                                         : 'border-rose-500/30 bg-rose-50/30 dark:bg-rose-950/20'
@@ -305,10 +305,10 @@ const QuizResultPage = () => {
 
                                 {/* Document Grounded Explanation Callout */}
                                 {item?.explanation && (
-                                    <div className="mt-4 rounded-xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/70 dark:bg-indigo-950/30 p-3.5 text-xs sm:text-sm text-indigo-950 dark:text-indigo-200 flex items-start gap-2.5">
-                                        <BookOpen className="h-4 w-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
+                                    <div className="mt-4 rounded-xl border border-blue-100 dark:border-blue-900/50 bg-blue-50/70 dark:bg-blue-950/30 p-3.5 text-xs sm:text-sm text-blue-950 dark:text-blue-200 flex items-start gap-2.5">
+                                        <BookOpen className="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
                                         <div>
-                                            <span className="font-bold text-indigo-900 dark:text-indigo-300">Explanation & Citation: </span>
+                                            <span className="font-bold text-blue-900 dark:text-blue-300">Explanation & Citation: </span>
                                             <span className="leading-relaxed">{item.explanation}</span>
                                         </div>
                                     </div>

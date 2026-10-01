@@ -115,11 +115,11 @@ const QuizManager = ({ documentId }) => {
     return (
         <div className="space-y-6">
             {/* Header & Overview Section */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-2">
-                            <BookOpen className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                            <BookOpen className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                             <h2 className="text-lg font-bold text-slate-900 dark:text-white">Document Quizzes & Assessments</h2>
                         </div>
                         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -137,7 +137,7 @@ const QuizManager = ({ documentId }) => {
                 {quizzes.length > 0 && (
                     <div className="mt-5 grid grid-cols-3 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
                         <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 p-3 border border-slate-100 dark:border-slate-800">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
                                 <HelpCircle className="h-4 w-4" />
                             </div>
                             <div>
@@ -173,11 +173,11 @@ const QuizManager = ({ documentId }) => {
 
             {/* Quiz Cards Grid or Loading/Empty State */}
             {loading ? (
-                <div className="flex items-center justify-center min-h-[220px] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="flex items-center justify-center min-h-[220px] rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <Spinner size="lg" />
                 </div>
             ) : quizzes.length === 0 ? (
-                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8">
                     <EmptyState
                         title="No Quizzes Generated Yet"
                         description="Create custom multiple-choice quizzes strictly based on the technical concepts in your document."
@@ -215,7 +215,7 @@ const QuizManager = ({ documentId }) => {
                             value={customTitle}
                             onChange={(e) => setCustomTitle(e.target.value)}
                             placeholder="e.g. Core Concepts & Architecture Review"
-                            className="w-full text-sm border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 dark:text-white"
+                            className="w-full text-sm border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800 dark:text-white"
                         />
                     </div>
 
@@ -225,7 +225,7 @@ const QuizManager = ({ documentId }) => {
                             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                                 Number of Questions (1 - 20)
                             </label>
-                            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                            <span className="text-xs font-bold text-blue-600 dark:text-blue-400">
                                 {parsedCount} questions
                             </span>
                         </div>
@@ -258,7 +258,7 @@ const QuizManager = ({ documentId }) => {
                                         setNumQuestions(String(parsed))
                                     }
                                 }}
-                                className="w-full text-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-bold text-slate-800 dark:text-white text-lg"
+                                className="w-full text-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold text-slate-800 dark:text-white text-lg"
                                 required
                             />
                             <button
@@ -281,7 +281,7 @@ const QuizManager = ({ documentId }) => {
                                     onClick={() => setNumQuestions(String(preset))}
                                     className={`text-xs px-3 py-1.5 rounded-lg border font-semibold transition-all ${
                                         parsedCount === preset
-                                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                                            ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                                             : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700'
                                     }`}
                                 >
@@ -308,7 +308,7 @@ const QuizManager = ({ documentId }) => {
                                     onClick={() => setDifficulty(level.id)}
                                     className={`p-2.5 rounded-xl border text-center transition ${
                                         difficulty === level.id
-                                            ? `${level.color} ring-2 ring-indigo-500/30 font-bold shadow-xs`
+                                            ? `${level.color} ring-2 ring-blue-500/30 font-bold shadow-xs`
                                             : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                                     }`}
                                 >

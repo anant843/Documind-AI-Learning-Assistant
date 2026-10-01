@@ -177,9 +177,9 @@ const InterviewPage = () => {
 
             {/* Document Selection & Setup Card */}
             {!sessionActive && (
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm max-w-2xl mx-auto space-y-6">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm max-w-2xl mx-auto space-y-6">
                     <div className="flex items-center gap-3">
-                        <div className="h-12 w-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-400 flex items-center justify-center shadow-xs">
+                        <div className="h-12 w-12 rounded-xl bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-400 flex items-center justify-center shadow-xs">
                             <Briefcase className="h-6 w-6" />
                         </div>
                         <div>
@@ -205,7 +205,7 @@ const InterviewPage = () => {
                                 <select
                                     value={selectedDocId}
                                     onChange={(e) => setSelectedDocId(e.target.value)}
-                                    className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-800 dark:text-slate-100"
+                                    className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium text-slate-800 dark:text-slate-100"
                                 >
                                     {documents.map((doc) => (
                                         <option key={doc._id} value={doc._id} className="dark:bg-slate-900 dark:text-slate-100">
@@ -215,7 +215,7 @@ const InterviewPage = () => {
                                 </select>
                             </div>
 
-                            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                                 <p className="font-semibold text-slate-800 dark:text-slate-200">What to expect:</p>
                                 <p>• AI acts as a Senior Engineering Interviewer asking progressive technical questions.</p>
                                 <p>• Speak with your microphone or type your responses.</p>
@@ -225,7 +225,7 @@ const InterviewPage = () => {
                             <button
                                 onClick={handleStartInterview}
                                 disabled={starting || !selectedDocId}
-                                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm shadow-md hover:from-indigo-700 hover:to-purple-700 transition flex items-center justify-center gap-2"
+                                className="w-full py-3.5 rounded-xl bg-slate-900   text-white font-bold text-sm shadow-md hover: hover: transition flex items-center justify-center gap-2"
                             >
                                 {starting ? <Loader2 className="h-5 w-5 animate-spin" /> : <Sparkles className="h-5 w-5" />}
                                 <span>Start Technical Interview</span>
@@ -243,15 +243,15 @@ const InterviewPage = () => {
                         <span>Question {questionNumber} of {totalQuestions}</span>
                         <div className="h-2 w-48 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                             <div
-                                className="h-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-300"
+                                className="h-full bg-blue-600 dark:bg-blue-500 transition-all duration-300"
                                 style={{ width: `${Math.round((questionNumber / totalQuestions) * 100)}%` }}
                             />
                         </div>
                     </div>
 
                     {/* Question Card */}
-                    <div className="rounded-3xl border border-indigo-100 dark:border-indigo-900/50 bg-gradient-to-br from-indigo-50/70 to-purple-50/40 dark:from-indigo-950/60 dark:to-purple-950/40 p-6 shadow-sm space-y-3">
-                        <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider">
+                    <div className="rounded-xl border border-blue-100 dark:border-blue-900/50 bg-slate-900   dark: dark: p-6 shadow-sm space-y-3">
+                        <div className="flex items-center gap-2 text-blue-700 dark:text-blue-400 text-xs font-bold uppercase tracking-wider">
                             <Briefcase className="h-4 w-4" />
                             <span>Interviewer Question #{questionNumber}</span>
                         </div>
@@ -261,7 +261,7 @@ const InterviewPage = () => {
                     </div>
 
                     {/* Answer Form */}
-                    <form onSubmit={handleSubmitAnswer} className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-4">
+                    <form onSubmit={handleSubmitAnswer} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-4">
                         <div className="flex items-center justify-between">
                             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Your Technical Response:</label>
                             <button
@@ -284,7 +284,7 @@ const InterviewPage = () => {
                             onChange={(e) => setUserAnswer(e.target.value)}
                             placeholder={isListening ? 'Listening to your voice...' : 'Type or dictate your structured technical explanation... Include core principles, execution steps, and practical constraints.'}
                             disabled={evaluating}
-                            className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 leading-relaxed bg-slate-50/30 dark:bg-slate-950/60 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
+                            className="w-full rounded-xl border border-slate-200 dark:border-slate-700 p-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 leading-relaxed bg-slate-50/30 dark:bg-slate-950/60 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
                         />
 
                         <div className="flex items-center justify-between pt-2">
@@ -299,7 +299,7 @@ const InterviewPage = () => {
                             <button
                                 type="submit"
                                 disabled={evaluating || !userAnswer.trim()}
-                                className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-sm disabled:opacity-50 transition flex items-center gap-2"
+                                className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-sm disabled:opacity-50 transition flex items-center gap-2"
                             >
                                 {evaluating ? (
                                     <>
@@ -321,7 +321,7 @@ const InterviewPage = () => {
                         <div className="space-y-4 pt-4">
                             <h4 className="text-sm font-bold text-slate-900 dark:text-white">Previous Question Evaluations:</h4>
                             {evaluations.map((ev, i) => (
-                                <div key={i} className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-3">
+                                <div key={i} className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs space-y-3">
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Question {ev.questionNumber}</span>
                                         <span className={`text-xs font-black px-2.5 py-1 rounded-full ${
@@ -350,12 +350,12 @@ const InterviewPage = () => {
             {isCompleted && (
                 <div className="max-w-3xl mx-auto space-y-6 animate-in fade-in zoom-in-95">
                     {/* Scorecard Hero Banner */}
-                    <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-8 shadow-xl">
+                    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900   text-white p-8 shadow-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-indigo-300">Interview Readiness Scorecard</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-blue-300">Interview Readiness Scorecard</span>
                                 <h2 className="text-3xl font-extrabold mt-1">Overall Rating: {calculateOverallScore()}%</h2>
-                                <p className="text-xs text-indigo-200 mt-2">
+                                <p className="text-xs text-blue-200 mt-2">
                                     {calculateOverallScore() >= 80
                                         ? '🔥 Strong Technical Mastery: Ready for technical screening!'
                                         : calculateOverallScore() >= 60
@@ -363,7 +363,7 @@ const InterviewPage = () => {
                                         : '📖 Needs Revision: Review course notes and practice targeted quiz questions.'}
                                 </p>
                             </div>
-                            <div className="h-20 w-20 rounded-3xl bg-white/10 backdrop-blur-md flex items-center justify-center text-4xl shrink-0 shadow-inner">
+                            <div className="h-20 w-20 rounded-xl bg-white/10  flex items-center justify-center text-4xl shrink-0 shadow-inner">
                                 <Award className="h-10 w-10 text-amber-400" />
                             </div>
                         </div>
@@ -373,7 +373,7 @@ const InterviewPage = () => {
                     <div className="space-y-4">
                         <h3 className="font-bold text-slate-900 dark:text-white text-base">Question-by-Question Breakdown</h3>
                         {evaluations.map((ev, i) => (
-                            <div key={i} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs space-y-3">
+                            <div key={i} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs space-y-3">
                                 <div className="flex items-center justify-between">
                                     <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Q{ev.questionNumber}: {ev.question}</span>
                                     <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
@@ -390,7 +390,7 @@ const InterviewPage = () => {
                                     {ev.userAnswer}
                                 </div>
 
-                                <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/40 rounded-xl text-xs text-indigo-900 dark:text-indigo-200 border border-indigo-100/60 dark:border-indigo-900/50">
+                                <div className="p-3 bg-blue-50/50 dark:bg-blue-950/40 rounded-xl text-xs text-blue-900 dark:text-blue-200 border border-blue-100/60 dark:border-blue-900/50">
                                     <span className="font-bold">Interviewer Critique: </span>
                                     {ev.feedback}
                                 </div>
@@ -411,7 +411,7 @@ const InterviewPage = () => {
                                 setIsCompleted(false)
                                 setSessionActive(false)
                             }}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-900 dark:bg-indigo-600 text-white text-xs font-bold hover:bg-slate-800 dark:hover:bg-indigo-500 shadow-md transition"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-blue-600 text-white text-xs font-bold hover:bg-slate-800 dark:hover:bg-blue-500 shadow-md transition"
                         >
                             <RotateCcw className="h-4 w-4" />
                             <span>Start Another Interview Session</span>

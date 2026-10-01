@@ -126,28 +126,28 @@ const HistoryPage = () => {
             label: 'Archived Documents',
             value: summary.totalDeletedDocs || 0,
             icon: FileText,
-            color: 'from-blue-600 to-indigo-600',
-            textColor: 'text-indigo-600 dark:text-indigo-400'
+            color: ' ',
+            textColor: 'text-blue-600 dark:text-blue-400'
         },
         {
             label: 'Historical Quizzes',
             value: summary.totalHistoricalQuizzes || 0,
             icon: TrendingUp,
-            color: 'from-amber-500 to-orange-600',
+            color: ' ',
             textColor: 'text-amber-600 dark:text-amber-400'
         },
         {
             label: 'Historical Avg Score',
             value: `${summary.overallHistoricalAvgScore || 0}%`,
             icon: Award,
-            color: 'from-purple-600 to-pink-600',
+            color: ' ',
             textColor: 'text-purple-600 dark:text-purple-400'
         },
         {
             label: 'Archived Flashcards',
             value: `${summary.totalHistoricalMastered || 0}/${summary.totalHistoricalFlashcards || 0}`,
             icon: BookOpen,
-            color: 'from-cyan-600 to-teal-600',
+            color: ' ',
             textColor: 'text-cyan-600 dark:text-cyan-400'
         },
     ]
@@ -158,7 +158,7 @@ const HistoryPage = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <div className="flex items-center gap-2.5">
-                        <div className="h-10 w-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-cyan-400 border border-indigo-100 dark:border-indigo-800/40 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-100 dark:border-blue-800/40 flex items-center justify-center">
                             <HistoryIcon className="h-5 w-5" />
                         </div>
                         <div>
@@ -188,11 +188,11 @@ const HistoryPage = () => {
                 {summaryCards.map((card, idx) => (
                     <div
                         key={idx}
-                        className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-between"
+                        className="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs flex flex-col justify-between"
                     >
                         <div className="flex items-center justify-between">
                             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">{card.label}</span>
-                            <div className={`p-2 rounded-xl bg-gradient-to-r ${card.color} text-white shadow-xs`}>
+                            <div className={`p-2 rounded-xl bg-slate-900 ${card.color} text-white shadow-xs`}>
                                 <card.icon className="h-4 w-4" />
                             </div>
                         </div>
@@ -215,7 +215,7 @@ const HistoryPage = () => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Filter archived documents by title..."
-                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-xs"
+                            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs"
                         />
                     </div>
                     <span className="text-xs text-slate-500 whitespace-nowrap">
@@ -226,8 +226,8 @@ const HistoryPage = () => {
 
             {/* History List */}
             {items.length === 0 ? (
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-12 text-center shadow-xs">
-                    <div className="mx-auto h-16 w-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-cyan-400 border border-indigo-100 dark:border-indigo-800/40 flex items-center justify-center mb-4 shadow-inner">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-12 text-center shadow-xs">
+                    <div className="mx-auto h-16 w-16 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-100 dark:border-blue-800/40 flex items-center justify-center mb-4 shadow-inner">
                         <HistoryIcon className="h-8 w-8" />
                     </div>
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white">No Archived Document History</h3>
@@ -237,7 +237,7 @@ const HistoryPage = () => {
                     <div className="mt-6 flex justify-center gap-3">
                         <Link
                             to="/documents"
-                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold shadow-xs transition"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition"
                         >
                             <span>Go to Documents</span>
                             <ArrowRight className="h-3.5 w-3.5" />
@@ -245,7 +245,7 @@ const HistoryPage = () => {
                     </div>
                 </div>
             ) : filteredItems.length === 0 ? (
-                <div className="p-8 text-center text-slate-500 dark:text-slate-400 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="p-8 text-center text-slate-500 dark:text-slate-400 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                     No archived document matches "{searchQuery}".
                 </div>
             ) : (
@@ -260,7 +260,7 @@ const HistoryPage = () => {
                         return (
                             <div
                                 key={item._id}
-                                className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs overflow-hidden transition"
+                                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs overflow-hidden transition"
                             >
                                 {/* Card Main Header */}
                                 <div className="p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -290,7 +290,7 @@ const HistoryPage = () => {
                                             </span>
 
                                             {/* Quizzes Pill */}
-                                            <span className="px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 font-medium">
+                                            <span className="px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 font-medium">
                                                 {item.completedQuizzesCount || item.quizzesCount || 0} Quizzes Taken
                                             </span>
 
@@ -330,7 +330,7 @@ const HistoryPage = () => {
                                                 onClick={() => setCardTab(item._id, 'quizzes')}
                                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
                                                     activeTab === 'quizzes'
-                                                        ? 'bg-indigo-600 text-white shadow-xs'
+                                                        ? 'bg-blue-600 text-white shadow-xs'
                                                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                                                 }`}
                                             >
@@ -340,7 +340,7 @@ const HistoryPage = () => {
                                                 onClick={() => setCardTab(item._id, 'flashcards')}
                                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
                                                     activeTab === 'flashcards'
-                                                        ? 'bg-indigo-600 text-white shadow-xs'
+                                                        ? 'bg-blue-600 text-white shadow-xs'
                                                         : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                                                 }`}
                                             >

@@ -20,9 +20,9 @@ const FlashcardSetCard = ({ flashcardSet }) => {
     return (
         <article
             onClick={handleStudyNow}
-            className="group relative h-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:shadow-slate-950/40 cursor-pointer"
+            className="group relative h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:shadow-slate-950/40 cursor-pointer"
         >
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500" />
+            <div className="absolute inset-x-0 top-0 h-1 bg-slate-900   " />
 
             {/* Header */}
             <div className="flex items-start justify-between gap-3">
@@ -70,7 +70,7 @@ const FlashcardSetCard = ({ flashcardSet }) => {
                 </div>
                 <div className="relative h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                     <div
-                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 transition-all"
+                        className="absolute inset-y-0 left-0 rounded-full bg-slate-900    transition-all"
                         style={{ width: `${progressPercentage}%` }}
                         aria-label="Flashcard review progress"
                     />

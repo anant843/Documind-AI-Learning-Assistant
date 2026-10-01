@@ -197,7 +197,7 @@ const FlashcardManager = ({ documentId }) => {
             </div>
             <div className="w-24 h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden border border-slate-200 dark:border-slate-700">
               <div
-                className="h-full bg-gradient-to-r from-amber-400 to-emerald-500 transition-all duration-500"
+                className="h-full bg-slate-900   transition-all duration-500"
                 style={{ width: `${masteryPct}%` }}
               />
             </div>
@@ -239,13 +239,13 @@ const FlashcardManager = ({ documentId }) => {
             <Flashcard key={currentCard._id || currentCardIndex} flashcard={currentCard} onToggleStar={() => handleToggle(currentCard._id)} />
           </div>
         ) : (
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6 text-center text-slate-600 dark:text-slate-400">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6 text-center text-slate-600 dark:text-slate-400">
             No cards available in this set.
           </div>
         )}
 
         {/* Spaced Repetition (SRS) Rating Action Bar */}
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/60 p-4 space-y-2 no-print">
+        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/60 p-4 space-y-2 no-print">
           <p className="text-xs font-bold text-slate-700 dark:text-slate-300 text-center uppercase tracking-wider">
             Rate Retention for Spaced Repetition (SRS)
           </p>
@@ -323,8 +323,8 @@ const FlashcardManager = ({ documentId }) => {
 
     if (flashcardSets.length === 0) {
       return (
-        <div className="p-8 flex flex-col items-center text-center gap-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/50">
-          <div className="h-12 w-12 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center shadow-xs">
+        <div className="p-8 flex flex-col items-center text-center gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/50">
+          <div className="h-12 w-12 rounded-xl bg-blue-50/80 dark:bg-blue-950/50 border border-blue-100 dark:border-blue-900/50 flex items-center justify-center shadow-xs">
             <LogoIcon className="h-7 w-7" />
           </div>
           <div className="space-y-1">
@@ -377,10 +377,10 @@ const FlashcardManager = ({ documentId }) => {
               <div
                 key={set._id}
                 onClick={() => handleSelectSet(set)}
-                className="group cursor-pointer rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs transition hover:-translate-y-1 hover:shadow-md dark:shadow-slate-950/40 space-y-4"
+                className="group cursor-pointer rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs transition hover:-translate-y-1 hover:shadow-md dark:shadow-slate-950/40 space-y-4"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/50">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50/80 dark:bg-blue-950/50 border border-blue-100 dark:border-blue-900/50">
                     <LogoIcon className="h-6 w-6" />
                   </div>
                   <button
@@ -433,7 +433,7 @@ const FlashcardManager = ({ documentId }) => {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+    <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
       {selectedSet ? renderFlashcardView() : renderSetList()}
 
       {/* Delete Confirmation Modal */}

@@ -1,52 +1,34 @@
-import React from 'react'
-import { useAuth } from '../../context/AuthContext'
-import { Bell, User, Menu } from 'lucide-react'
+import React from "react";
+import { useAuth } from "../../context/AuthContext";
+import { Menu, Bell } from "lucide-react";
 
 const Header = ({ toggleSidebar }) => {
   const { user } = useAuth();
-  const displayName = user?.username || user?.name || user?.email || 'User';
-  const initial = displayName?.charAt(0)?.toUpperCase?.() || 'U';
-
+  const displayName = user?.username || user?.name || user?.email || "Student";
+  const initial = displayName.charAt(0).toUpperCase();
   return (
-    <header className="flex-shrink-0 z-30 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
-      <div className="mx-auto flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Left: mobile menu */}
-        <div className="flex items-center gap-3">
-          <button
-            className="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            onClick={toggleSidebar}
-            aria-label="Toggle sidebar"
-          >
-            <Menu className="h-5 w-5" />
-          </button>
-          <div className="hidden sm:flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Workspace</span>
-          </div>
-        </div>
-
-        {/* Right: actions */}
-        <div className="flex items-center gap-3.5">
-          <button 
-            className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition" 
-            aria-label="Notifications"
-          >
-            <Bell className="h-4.5 w-4.5" />
-          </button>
-
-          <div className="flex items-center gap-3 pl-2 border-l border-slate-200/80 dark:border-slate-800/80">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold text-xs shadow-xs">
-              {initial}
-            </div>
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-xs font-bold text-slate-900 dark:text-white">{displayName}</span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 truncate max-w-[140px]">{user?.email || 'Student'}</span>
-            </div>
+    <header className="z-30 flex h-16 shrink-0 items-center border-b border-slate-200 bg-white px-4 dark:border-slate-800 dark:bg-[#181b21] sm:px-6">
+      <button onClick={toggleSidebar} className="mr-3 rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden dark:text-slate-300 dark:hover:bg-slate-800" aria-label="Open navigation">
+        <Menu className="h-5 w-5" />
+      </button>
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-slate-900 dark:text-white">Study workspace</p>
+        <p className="hidden text-xs text-slate-500 sm:block dark:text-slate-400">Read, retrieve, and review from your own material.</p>
+      </div>
+      <div className="ml-auto flex items-center gap-2 sm:gap-4">
+        <button className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white" aria-label="Notifications">
+          <Bell className="h-4 w-4" />
+        </button>
+        <div className="h-7 w-px bg-slate-200 dark:bg-slate-800" />
+        <div className="flex items-center gap-2.5">
+          <div className="grid h-8 w-8 place-items-center rounded-lg bg-slate-900 text-xs font-bold text-white dark:bg-blue-600">{initial}</div>
+          <div className="hidden min-w-0 sm:block">
+            <p className="max-w-40 truncate text-xs font-semibold text-slate-900 dark:text-white">{displayName}</p>
+            <p className="max-w-40 truncate text-[11px] text-slate-500 dark:text-slate-400">{user?.email || "Signed in"}</p>
           </div>
         </div>
       </div>
     </header>
-  )
-}
-
-export default Header
+  );
+};
+export default Header;

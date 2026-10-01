@@ -163,7 +163,7 @@ const FlashcardPage = () => {
         <Flashcard key={currentCard?._id || currentCardIndex} flashcard={currentCard} onToggleStar={handleToggleStar} />
 
         {/* SRS Rating Action Bar */}
-        <div className="w-full max-w-xl md:max-w-2xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 p-4 space-y-2">
+        <div className="w-full max-w-xl md:max-w-2xl rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 p-4 space-y-2">
           <p className="text-xs font-bold text-slate-700 dark:text-slate-300 text-center uppercase tracking-wider">
             Rate Retention for Spaced Repetition (SRS)
           </p>
@@ -258,7 +258,7 @@ const FlashcardPage = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
         {renderFlashcardContent()}
       </div>
 

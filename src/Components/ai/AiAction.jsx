@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
-    Sparkles,
     BookOpen,
     Lightbulb,
     Loader2,
     FileText,
     FolderTree,
     Target,
-    Zap,
     ArrowRight,
     Presentation
 } from 'lucide-react'
@@ -83,26 +81,21 @@ const AiAction = ({ documentTitle }) => {
 
     return (
         <>
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden">
                 {/* Header */}
                 <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50 flex items-center justify-center">
-                            <Sparkles className="h-5 w-5" />
-                        </div>
-                        <div>
-                            <h3 className="text-base font-bold text-slate-900 dark:text-white">AI Study Suite & Accelerators</h3>
-                            <p className="text-xs text-slate-500 dark:text-slate-400">Transform your notes into exam-ready learning assets</p>
-                        </div>
+                    <div>
+                        <h3 className="text-base font-bold text-slate-900 dark:text-white">Study tools</h3>
+                        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Create focused learning material from this document.</p>
                     </div>
                 </div>
 
-                <div className="p-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-px bg-slate-200 p-px dark:bg-slate-800 md:grid-cols-2">
                     {/* 1. PDF-to-Notes Card */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-indigo-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-indigo-500/40 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-blue-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-blue-500/40 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
-                                <div className="h-9 w-9 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                                <div className="h-9 w-9 rounded-xl bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
                                     <FileText className="h-4.5 w-4.5" />
                                 </div>
                                 <h4 className="font-bold text-sm text-slate-900 dark:text-white">PDF-to-Notes Generator</h4>
@@ -113,7 +106,7 @@ const AiAction = ({ documentTitle }) => {
                         </div>
                         <button
                             onClick={() => setIsNotesModalOpen(true)}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-4 py-2.5 text-white text-xs font-semibold shadow-xs transition"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-2.5 text-white text-xs font-semibold shadow-xs transition"
                         >
                             <span>Open Study Notes</span>
                             <ArrowRight className="h-3.5 w-3.5" />
@@ -121,7 +114,7 @@ const AiAction = ({ documentTitle }) => {
                     </div>
 
                     {/* 2. PDF-to-Mind Map Card */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-cyan-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-cyan-500/40 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-cyan-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-cyan-500/40 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <div className="h-9 w-9 rounded-xl bg-cyan-100 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
@@ -143,7 +136,7 @@ const AiAction = ({ documentTitle }) => {
                     </div>
 
                     {/* PDF-to-Slide Deck Card */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-purple-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-purple-500/40 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-purple-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-purple-500/40 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <div className="h-9 w-9 rounded-xl bg-purple-100 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
@@ -165,7 +158,7 @@ const AiAction = ({ documentTitle }) => {
                     </div>
 
                     {/* 3. Personalized Weak-Topic Quiz Card */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-amber-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-amber-500/40 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-amber-500/20 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-amber-500/40 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <div className="h-9 w-9 rounded-xl bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
@@ -197,10 +190,10 @@ const AiAction = ({ documentTitle }) => {
                     </div>
 
                     {/* 4. Generate Summary Card */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-slate-700 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 hover:shadow-md dark:hover:border-slate-700 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
-                                <div className="h-9 w-9 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                                <div className="h-9 w-9 rounded-xl bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
                                     <BookOpen className="h-4.5 w-4.5" />
                                 </div>
                                 <h4 className="font-bold text-sm text-slate-900 dark:text-white">Document Overview Summary</h4>
@@ -212,7 +205,7 @@ const AiAction = ({ documentTitle }) => {
                         <button
                             onClick={handleGenerateSummary}
                             disabled={loadingAction === 'summary'}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 px-4 py-2.5 text-white text-xs font-semibold shadow-xs transition disabled:opacity-50"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 px-4 py-2.5 text-white text-xs font-semibold shadow-xs transition disabled:opacity-50"
                         >
                             {loadingAction === 'summary' ? (
                                 <>
@@ -226,7 +219,7 @@ const AiAction = ({ documentTitle }) => {
                     </div>
 
                     {/* 5. Explain Specific Concept */}
-                    <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 md:col-span-2 lg:col-span-2 hover:shadow-md dark:hover:border-slate-700 dark:shadow-slate-950/40 transition">
+                    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900 p-5 flex flex-col justify-between gap-4 md:col-span-2 lg:col-span-2 hover:shadow-md dark:hover:border-slate-700 dark:shadow-slate-950/40 transition">
                         <div className="space-y-3">
                             <div className="flex items-center gap-2.5">
                                 <div className="h-9 w-9 rounded-xl bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
@@ -245,12 +238,12 @@ const AiAction = ({ documentTitle }) => {
                                 onChange={(e) => setConcept(e.target.value)}
                                 disabled={loadingAction === 'explain'}
                                 placeholder="e.g. Backpropagation, Normalization, Semaphore..."
-                                className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
+                                className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
                             />
                             <button
                                 type="submit"
                                 disabled={loadingAction === 'explain'}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 px-4 py-2 text-white text-xs font-semibold shadow-xs transition disabled:opacity-50 shrink-0"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white text-xs font-semibold shadow-xs transition disabled:opacity-50 shrink-0"
                             >
                                 {loadingAction === 'explain' ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />

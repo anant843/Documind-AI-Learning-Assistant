@@ -90,7 +90,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
+        <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600">
               <User className="h-5 w-5" />
@@ -143,7 +143,7 @@ const ProfilePage = () => {
         </div>
 
         {/* Gamification & Achievements Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
+        <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-xl bg-amber-50 text-amber-600">
@@ -154,7 +154,7 @@ const ProfilePage = () => {
                 <p className="text-sm text-slate-600">Your gamified experience points and badges.</p>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">
+            <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
               Level {profile.level || 1} Scholar
             </span>
           </div>
@@ -209,7 +209,7 @@ const ProfilePage = () => {
         </div>
 
 
-        <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
+        <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-xl bg-slate-50 text-slate-700">
               <Lock className="h-5 w-5" />

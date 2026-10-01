@@ -87,7 +87,7 @@ const DocumentComparePage = () => {
             />
 
             {/* Selection & Query Card */}
-            <form onSubmit={handleCompare} className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6">
+            <form onSubmit={handleCompare} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-center gap-4">
                     {/* Document 1 Selector */}
                     <div className="space-y-2">
@@ -98,7 +98,7 @@ const DocumentComparePage = () => {
                             value={docId1}
                             onChange={(e) => setDocId1(e.target.value)}
                             disabled={docsLoading}
-                            className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
+                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
                         >
                             {documents.map((d) => (
                                 <option key={d._id} value={d._id} className="dark:bg-slate-900 dark:text-slate-100">
@@ -122,7 +122,7 @@ const DocumentComparePage = () => {
                             value={docId2}
                             onChange={(e) => setDocId2(e.target.value)}
                             disabled={docsLoading}
-                            className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
+                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
                         >
                             {documents.map((d) => (
                                 <option key={d._id} value={d._id} className="dark:bg-slate-900 dark:text-slate-100">
@@ -151,7 +151,7 @@ const DocumentComparePage = () => {
                     <button
                         type="submit"
                         disabled={loading || docsLoading || documents.length === 0}
-                        className="px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-xs shadow-sm hover:from-emerald-700 hover:to-teal-700 transition flex items-center gap-2 disabled:opacity-50"
+                        className="px-6 py-3 rounded-xl bg-slate-900   text-white font-bold text-xs shadow-sm hover: hover: transition flex items-center gap-2 disabled:opacity-50"
                     >
                         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <SplitSquareVertical className="h-4 w-4" />}
                         <span>{loading ? 'Synthesizing Comparison Matrix...' : 'Compare Both Documents'}</span>
@@ -161,7 +161,7 @@ const DocumentComparePage = () => {
 
             {/* Comparison Result Display */}
             {comparisonResult && (
-                <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden animate-in fade-in zoom-in-95">
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden animate-in fade-in zoom-in-95">
                     <div className="p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800 flex items-center justify-between">
                         <div>
                             <span className="text-xs uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400">Analysis Matrix</span>

@@ -34,7 +34,7 @@ const CitationList = ({ citations = [], retrievalMetadata = null, onCitationClic
       {hasCitations && (
         <div>
           <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">
-            <Sparkles className="h-3.5 w-3.5 text-indigo-500 dark:text-cyan-400" />
+            <Sparkles className="h-3.5 w-3.5 text-blue-500 dark:text-cyan-400" />
             <span>Sources:</span>
           </div>
 
@@ -49,7 +49,7 @@ const CitationList = ({ citations = [], retrievalMetadata = null, onCitationClic
                   key={`${citation.documentId || 'doc'}-${citation.chunkId || idx}`}
                   type="button"
                   onClick={() => handleCitationClick(citation)}
-                  className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/80 dark:bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-indigo-50/60 dark:hover:bg-indigo-950/40 hover:text-indigo-900 dark:hover:text-indigo-200 transition shadow-2xs"
+                  className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/80 dark:bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/60 dark:hover:bg-blue-950/40 hover:text-blue-900 dark:hover:text-blue-200 transition shadow-2xs"
                   title={`Click to verify Page ${page} excerpt in ${docName}`}
                 >
                   <span className="text-base leading-none select-none">📄</span>
@@ -57,13 +57,13 @@ const CitationList = ({ citations = [], retrievalMetadata = null, onCitationClic
                     {docName}
                   </span>
                   <span className="text-slate-400 dark:text-slate-500 select-none">—</span>
-                  <span className="inline-flex items-center gap-1 font-bold text-indigo-600 dark:text-cyan-400 shrink-0">
+                  <span className="inline-flex items-center gap-1 font-bold text-blue-600 dark:text-cyan-400 shrink-0">
                     <Bookmark className="h-3 w-3" /> Page {page}
                   </span>
-                  <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono group-hover:text-indigo-600 dark:group-hover:text-cyan-300 shrink-0">
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono group-hover:text-blue-600 dark:group-hover:text-cyan-300 shrink-0">
                     ({matchPct}%)
                   </span>
-                  <ExternalLink className="h-3 w-3 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-cyan-300 opacity-60 group-hover:opacity-100 transition shrink-0" />
+                  <ExternalLink className="h-3 w-3 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-300 opacity-60 group-hover:opacity-100 transition shrink-0" />
                 </button>
               )
             })}

@@ -47,7 +47,7 @@ const MarkdownRenderer = ({ content = '' }) => {
                         <blockquote className="border-l-4 border-emerald-500 pl-4 py-2 italic bg-slate-50 dark:bg-slate-800 rounded-r-xl text-slate-700 dark:text-slate-200 my-4" {...props} />
                     ),
                     table: ({ node, ...props }) => (
-                        <div className="overflow-x-auto my-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div className="overflow-x-auto my-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
                             <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 text-sm" {...props} />
                         </div>
                     ),
@@ -74,7 +74,7 @@ const MarkdownRenderer = ({ content = '' }) => {
                                     style={dracula}
                                     language={match[1]}
                                     PreTag="div"
-                                    className="rounded-2xl my-4 text-xs shadow-md"
+                                    className="rounded-xl my-4 text-xs shadow-md"
                                     {...props}
                                 >
                                     {String(children).replace(/\n$/, '')}

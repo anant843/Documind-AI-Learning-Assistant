@@ -7,7 +7,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       <div
-        className="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-slate-900/70 "
         onClick={onClose}
         aria-hidden="true"
       />
@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       <div
         role="dialog"
         aria-modal="true"
-        className="relative w-full max-w-2xl rounded-2xl bg-white dark:bg-slate-900 shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden"
+        className="relative w-full max-w-2xl rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden"
       >
         <div className="flex items-start justify-between gap-3 p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60">
           <div>

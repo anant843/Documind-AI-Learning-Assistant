@@ -26,7 +26,7 @@ const MindMapNode = ({ node, depth = 0 }) => {
                 <div
                     className={`px-3.5 py-2 rounded-xl text-xs font-semibold shadow-xs transition ${
                         depth === 0
-                            ? 'bg-gradient-to-r from-indigo-600 to-cyan-600 text-white text-sm py-2.5 px-4 shadow-md'
+                            ? 'bg-slate-900   text-white text-sm py-2.5 px-4 shadow-md'
                             : depth === 1
                             ? 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-200 border border-cyan-200 dark:border-cyan-800/60'
                             : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-cyan-300 dark:hover:border-cyan-500'
@@ -93,12 +93,12 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
     }
 
     return (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
+        <div className="fixed inset-0 bg-slate-900/50  z-50 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95">
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/90">
                     <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-800/40 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-800/40 flex items-center justify-center">
                             <FolderTree className="h-5 w-5" />
                         </div>
                         <div>
@@ -132,7 +132,7 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             <p className="text-xs font-medium">Extracting hierarchical concept tree from document...</p>
                         </div>
                     ) : mindMapData ? (
-                        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">
                             <MindMapNode node={mindMapData} depth={0} />
                         </div>
                     ) : (
@@ -145,7 +145,7 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                     <span>Click on arrows to expand/collapse chapter branches</span>
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-xl text-xs font-semibold transition"
+                        className="px-4 py-2 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-xl text-xs font-semibold transition"
                     >
                         Close
                     </button>
