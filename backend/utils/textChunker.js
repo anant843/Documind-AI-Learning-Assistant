@@ -240,58 +240,82 @@ export const findRelevantChunks = (chunks, query, maxChunks = 5) => {
         return chunks.slice(0, maxChunks);
     }
 
-    const cleanQuery = query.toLowerCase().trim();
-
-    // Common stop words and generic question/comparison framing terms
     const stopWords = new Set([
-        'the', 'is', 'at', 'which', 'on', 'and', 'a', 'an', 'in', 'to', 'it', 'of', 'for', 'with', 'as', 'by', 'that', 'this', 'these', 'those', 'be', 'are', 'was', 'were', 'from', 'or', 'but', 'what', 'how', 'why', 'when', 'where', 'who', 'does', 'did', 'do', 'can', 'could', 'would', 'should', 'explain', 'tell', 'me', 'about', 'define', 'meaning', 'difference', 'differences', 'between', 'versus', 'vs', 'compare', 'contrast'
+        'the', 'is', 'at', 'which', 'on', 'and', 'a', 'an', 'in', 'to', 'it', 'of', 'for', 'with', 'as', 'by', 'that', 'this', 'these', 'those', 'be', 'are', 'was', 'were', 'from', 'or', 'but', 'what', 'how', 'why', 'when', 'where', 'who', 'does', 'did', 'do', 'can', 'could', 'would', 'should', 'please', 'explain', 'tell', 'me', 'about'
     ]);
+    const synonyms = {
+        typo: ['typographical', 'keypunch', 'misspelling', 'error'],
+        typos: ['typographical', 'keypunch', 'misspelling', 'errors'],
+        swapped: ['transposition', 'transpositions', 'transposed'],
+        letters: ['characters', 'character'],
+        compare: ['comparison', 'comparator', 'compared'],
+        compared: ['comparison', 'comparator', 'compare'],
+        meaning: ['definition', 'defined', 'means'],
+        benefits: ['advantages', 'strengths'],
+        drawbacks: ['disadvantages', 'limitations', 'weaknesses']
+    };
+    const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    const tokenize = (value) => normalize(value).split(/\s+/).filter(Boolean);
+    const stem = (word) => word
+        .replace(/(?:ization|ational|fulness|ousness|iveness)$/i, '')
+        .replace(/(?:ingly|edly|ments|ment|ness|ation|ions|tion)$/i, '')
+        .replace(/(?:ies)$/i, 'y')
+        .replace(/(?:ing|ed|es|s)$/i, '') || word;
 
-    // Extract significant query terms
-    const queryTerms = cleanQuery
-        .replace(/[^a-z0-9\s]/g, ' ')
-        .split(/\s+/)
-        .filter(term => term.length > 1 && !stopWords.has(term));
+    const originalTerms = [...new Set(tokenize(query).filter(term => term.length > 1 && !stopWords.has(term)))];
+    const queryTerms = originalTerms.length > 0 ? originalTerms : tokenize(query);
+    const expandedTerms = [...new Set(queryTerms.flatMap(term => [term, ...(synonyms[term] || [])]).map(stem))];
+    const normalizedChunks = chunks.map((chunk, index) => {
+        const text = chunk.content || chunk.text || '';
+        const tokens = tokenize(text).map(stem);
+        return { chunk, index, text, normalizedText: normalize(text), tokens };
+    });
+    const averageLength = normalizedChunks.reduce((sum, item) => sum + item.tokens.length, 0) / normalizedChunks.length || 1;
+    const documentFrequency = new Map(expandedTerms.map(term => [
+        term,
+        normalizedChunks.filter(item => item.tokens.includes(term)).length
+    ]));
+    const queryPhrase = normalize(query);
+    const queryBigrams = queryTerms.slice(0, -1).map((term, index) => `${stem(term)} ${stem(queryTerms[index + 1])}`);
+    const totalChunks = normalizedChunks.length;
 
-    // Fallback if all words were filtered
-    const effectiveTerms = queryTerms.length > 0
-        ? queryTerms
-        : cleanQuery.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(t => t.length > 1);
+    const scoredChunks = normalizedChunks.map(({ chunk, index, normalizedText, tokens }) => {
+        const frequencies = new Map();
+        tokens.forEach(token => frequencies.set(token, (frequencies.get(token) || 0) + 1));
+        let bm25 = 0;
+        const matchedOriginalTerms = new Set();
+        const k1 = 1.5;
+        const b = 0.75;
 
-    // Score chunks with term frequency & density
-    const scoredChunks = chunks.map(chunk => {
-        const text = (chunk.content || chunk.text || '').toLowerCase();
-        let score = 0;
-        let matchCount = 0;
-
-        for (const term of effectiveTerms) {
-            // Exact term occurrences
-            const regex = new RegExp(`\\b${term}\\b`, 'gi');
-            const matches = text.match(regex);
-            if (matches) {
-                matchCount += matches.length;
-                score += matches.length * 3; // exact match weight
-            } else if (text.includes(term)) {
-                matchCount += 1;
-                score += 1; // partial match weight
-            }
+        for (const term of expandedTerms) {
+            const frequency = frequencies.get(term) || 0;
+            if (!frequency) continue;
+            const df = documentFrequency.get(term) || 0;
+            const idf = Math.log(1 + ((totalChunks - df + 0.5) / (df + 0.5)));
+            bm25 += idf * ((frequency * (k1 + 1)) / (frequency + k1 * (1 - b + b * (tokens.length / averageLength))));
         }
 
-        // Phrase bonus if query appears verbatim
-        if (text.includes(cleanQuery)) {
-            score += 10;
+        for (const term of queryTerms) {
+            const candidates = [term, ...(synonyms[term] || [])].map(stem);
+            if (candidates.some(candidate => frequencies.has(candidate))) matchedOriginalTerms.add(term);
         }
 
-        return {
-            ...chunk,
-            score,
-            matchCount
-        };
+        const coverage = queryTerms.length ? matchedOriginalTerms.size / queryTerms.length : 0;
+        const phraseBonus = queryPhrase.length > 4 && normalizedText.includes(queryPhrase.replace(/^(what|how|why|when|where|who)\s+/, '')) ? 4 : 0;
+        const stemmedText = tokens.join(' ');
+        const bigramBonus = queryBigrams.reduce((sum, bigram) => sum + (stemmedText.includes(bigram) ? 0.8 : 0), 0);
+        const score = bm25 + (coverage * coverage * 5) + phraseBonus + bigramBonus;
+
+        return { ...chunk, score, matchCount: matchedOriginalTerms.size, coverage, originalIndex: index };
     });
 
-    // Sort by score descending and return top chunks
     return scoredChunks
-        .filter(c => c.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, maxChunks);
+        .filter(chunk => chunk.score > 0)
+        .sort((a, b) => b.score - a.score || b.coverage - a.coverage || a.originalIndex - b.originalIndex)
+        .slice(0, maxChunks)
+        .map(chunk => {
+            const result = { ...chunk };
+            delete result.originalIndex;
+            return result;
+        });
 };

@@ -26,6 +26,22 @@ import { authLimiter, aiLimiter, generalLimiter } from './middleware/rateLimiter
 
 // initial express app
 const app = express();  
+let databaseConnection = null;
+
+const ensureDatabase = async (_req, _res, next) => {
+    try {
+        if (!databaseConnection) {
+            databaseConnection = connectDB().catch(error => {
+                databaseConnection = null;
+                throw error;
+            });
+        }
+        await databaseConnection;
+        next();
+    } catch (error) {
+        next(error);
+    }
+};
 
 // database connection happens in startServer function below
 
@@ -43,6 +59,7 @@ app.use(
 
 app.use(express.json())  //get the json from the request body 
 app.use(express.urlencoded({ extended: true }));  //parse html form bodies
+app.use(ensureDatabase);
 
 // static folder for updas
 
@@ -88,9 +105,13 @@ const startServer = async () => {
     }
 };
 
-startServer();
+if (!process.env.VERCEL) {
+    startServer();
+}
 
 process.on('unhandledRejection', (err) => {
     console.error(`Error: ${err.message}`);
     process.exit(1);
 });
+
+export default app;

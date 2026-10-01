@@ -454,7 +454,21 @@ const mockChatWithContext = (question, chunks) => {
   }
 
   const cleanQ = (question || '').toLowerCase();
-  const qWords = cleanQ.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(w => w.length > 2);
+  const questionSynonyms = {
+    typo: ['typographical', 'keypunch', 'misspelling', 'error'],
+    typos: ['typographical', 'keypunch', 'misspelling', 'errors'],
+    swapped: ['transposition', 'transpositions', 'transposed'],
+    letters: ['character', 'characters'],
+    compare: ['comparison', 'comparator', 'compared'],
+    compared: ['comparison', 'comparator', 'compare'],
+    meaning: ['definition', 'defined', 'means'],
+    benefits: ['advantages', 'strengths'],
+    drawbacks: ['disadvantages', 'limitations', 'weaknesses'],
+    percentage: ['percent', 'proportion', 'rate'],
+    percent: ['percentage', 'proportion', 'rate']
+  };
+  const baseQWords = cleanQ.replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(w => w.length > 2);
+  const qWords = [...new Set(baseQWords.flatMap(word => [word, ...(questionSynonyms[word] || [])]))];
 
   // 1. Search across all candidate chunks for structured Q&A items matching user question
   let bestQA = null;
@@ -470,7 +484,9 @@ const mockChatWithContext = (question, chunks) => {
 
     for (const line of lines) {
       const trimmed = line.trim();
-      if (/^(?:\d+[\.\)]|Q(?:uestion)?\s*[\d:]*)/i.test(trimmed)) {
+      const isExplicitQuestion = /^Q(?:uestion)?\s*(?:\d+)?\s*[:.)-]/i.test(trimmed);
+      const isNumberedQuestion = /^\d+[.)]\s+.*\?\s*$/i.test(trimmed);
+      if (isExplicitQuestion || isNumberedQuestion) {
         if (currentQ && currentA) {
           items.push({ question: currentQ, answer: currentA.trim() });
         }

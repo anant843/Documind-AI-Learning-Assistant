@@ -43,7 +43,7 @@ export const uploadDocument = async (req, res, next) => {
         const fileHash = await computeFileHash(req.file.path);
 
         // construct document data
-        const baseUrl = `http://localhost:${process.env.PORT || 8000}`;
+        const baseUrl = process.env.PUBLIC_API_URL || `${req.protocol}://${req.get('host')}`;
         const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
 
         // create document record 
@@ -154,9 +154,13 @@ export const uploadDocument = async (req, res, next) => {
 
         // If document not already restored to ready status, process PDF in background
         if (document.status !== 'ready') {
-            processPDF(document._id, req.file.path).catch(err => {
-                console.error("Error processing PDF:", err);
-            });
+            if (process.env.VERCEL) {
+                await processPDF(document._id, req.file.path);
+            } else {
+                processPDF(document._id, req.file.path).catch(err => {
+                    console.error("Error processing PDF:", err);
+                });
+            }
         }
 
         await awardUserXP(req.user._id, 25, 'document_upload');
@@ -206,6 +210,9 @@ export const processPDF = async (documentId, filePath) => {
 
         // Chunk by real PDF pages to guarantee exact citation page numbers
         const rawChunks = chunkText(pages && pages.length > 0 ? pages : text, 450, 50);
+        if (rawChunks.length === 0 || rawChunks.every(chunk => !chunk.content?.trim())) {
+            throw new Error('No readable text was found in this PDF. It may be scanned or image-only and require OCR.');
+        }
         const chunksWithEmbeddings = [];
 
         for (let idx = 0; idx < rawChunks.length; idx++) {
@@ -475,5 +482,3 @@ export const deleteDocument = async (req, res, next) => {
         next(error);
     }
 }
-
-
