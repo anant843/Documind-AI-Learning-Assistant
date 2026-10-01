@@ -1,5 +1,9 @@
 import fs from 'fs/promises';
-import { PDFParse } from 'pdf-parse';
+import { DOMMatrix, ImageData, Path2D } from '@napi-rs/canvas';
+
+globalThis.DOMMatrix ||= DOMMatrix;
+globalThis.ImageData ||= ImageData;
+globalThis.Path2D ||= Path2D;
 
 /**
  * Sanitizes raw PDF extracted text by removing page headers, footers,
@@ -35,6 +39,7 @@ export const cleanPDFText = (raw) => {
  */
 export const extractTextFromPDF = async (filePath) => {
     try {
+        const { PDFParse } = await import('pdf-parse');
         const dataBuffer = await fs.readFile(filePath);
         // pdf-parse expects a Uint8Array
         const parser = new PDFParse(new Uint8Array(dataBuffer));
