@@ -11,7 +11,6 @@ import AiAction from '../../Components/ai/AiAction.jsx'
 import Flashcard from '../../Components/flashcard/Flashcard.jsx'
 import FlashcardManager from '../../Components/flashcard/FlashcardManager.jsx'
 import QuizManager from '../../Components/quizzes/QuizManager.jsx'
-import { BASE_URL } from '../../utils/apiPaths.js'
 
 
 const DocumentDetailPage = () => {
@@ -21,6 +20,8 @@ const DocumentDetailPage = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('content');
   const [targetPage, setTargetPage] = useState(1);
+  const [pdfObjectUrl, setPdfObjectUrl] = useState(null);
+  const [pdfError, setPdfError] = useState('');
 
 
   useEffect(() => {
@@ -29,6 +30,12 @@ const DocumentDetailPage = () => {
       try {
         const data = await documentService.getDocumentById(id);
         setDocument(data);
+        try {
+          const pdfBlob = await documentService.getDocumentFile(id);
+          setPdfObjectUrl(URL.createObjectURL(pdfBlob));
+        } catch (pdfFetchError) {
+          setPdfError(pdfFetchError.message || 'PDF preview is unavailable. Please upload the document again.');
+        }
 
       } catch (error) {
         toast.error(error.message || "Failed to fetch document details");
@@ -40,27 +47,14 @@ const DocumentDetailPage = () => {
     fetchDocumentDetails();
   }, [id]);
 
+  useEffect(() => () => {
+    if (pdfObjectUrl) URL.revokeObjectURL(pdfObjectUrl);
+  }, [pdfObjectUrl]);
+
 
   // Helper function to get the full pdf url
   const getPdfUrl = (pageNumber = null) => {
-    if (!document?.data?.filepath) {
-      return null;
-    }
-
-    let filePath = document.data.filepath;
-    const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) || BASE_URL;
-    
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      // Normalize any localhost port mismatches to the active BASE_URL
-      if (filePath.includes('localhost:5000') || filePath.includes('localhost:8000')) {
-        filePath = filePath.replace(/http:\/\/localhost:(5000|8000)/, baseUrl);
-      }
-      return pageNumber ? `${filePath}#page=${pageNumber}` : filePath;
-    }
-
-    const cleanPath = filePath.replace(/\\/g, '/');
-    const fullUrl = `${baseUrl}/${cleanPath.startsWith('/') ? cleanPath.slice(1) : cleanPath}`;
-    return pageNumber ? `${fullUrl}#page=${pageNumber}` : fullUrl;
+    return pdfObjectUrl && pageNumber ? `${pdfObjectUrl}#page=${pageNumber}` : pdfObjectUrl;
   };
 
   const handleNavigateToPage = (pageNum) => {
@@ -72,8 +66,11 @@ const DocumentDetailPage = () => {
   };
 
   const renderContent = () => {
-    if (!document || !document.data || !document.data.filepath) {
-      return <p className="text-center text-slate-600">PDF not available</p>;
+    if (pdfError) {
+      return <p className="text-center text-slate-600 dark:text-slate-300 p-8">{pdfError}</p>;
+    }
+    if (!pdfObjectUrl) {
+      return <Spinner />;
     }
     const pdfUrl = getPdfUrl(targetPage);
 

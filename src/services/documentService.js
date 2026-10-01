@@ -38,6 +38,17 @@ const getDocumentById = async (id) => {
 	}
 };
 
+const getDocumentFile = async (id) => {
+	try {
+		const res = await axiosInstance.get(API_PATHS.DOCUMENTS.GET_DOCUMENT_FILE(id), {
+			responseType: "blob",
+		});
+		return res.data;
+	} catch (error) {
+		throw formatError(error);
+	}
+};
+
 
 const deleteDocument = async (id) => {
 	try {
@@ -52,6 +63,7 @@ const documentService = {
 	uploadDocument,
 	getDocuments,
 	getDocumentById,
+	getDocumentFile,
 	deleteDocument,
 };
 

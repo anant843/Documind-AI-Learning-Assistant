@@ -6,6 +6,7 @@ import StudyHistory from '../models/StudyHistory.js';
 import {extractTextFromPDF} from '../utils/pdfParser.js';
 import {chunkText} from '../utils/textChunker.js';
 import {generateEmbedding} from '../utils/embeddingService.js';
+import { storePdf, openPdfStream, deletePdf } from '../utils/pdfStorage.js';
 
 import fs from 'fs/promises';
 import mongoose from 'mongoose';
@@ -42,16 +43,24 @@ export const uploadDocument = async (req, res, next) => {
         // Calculate file hash for re-upload and duplicate identification
         const fileHash = await computeFileHash(req.file.path);
 
+        const documentId = new mongoose.Types.ObjectId();
+        const fileId = await storePdf(req.file.path, req.file.originalname, {
+            userId: req.user._id.toString(),
+            documentId: documentId.toString()
+        });
+
         // construct document data
         const baseUrl = process.env.PUBLIC_API_URL || `${req.protocol}://${req.get('host')}`;
-        const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
+        const fileUrl = `${baseUrl}/api/documents/${documentId}/file`;
 
         // create document record 
         const document = await Document.create({
+            _id: documentId,
             userId: req.user._id,
             title,
             filename: req.file.originalname,
             filepath: fileUrl,
+            fileId,
             fileHash,
             filesize: req.file.size,
             status: 'processing'
@@ -344,6 +353,28 @@ export const getDocument = async (req, res, next) => {
     }
 }
 
+export const getDocumentFile = async (req, res, next) => {
+    try {
+        const document = await Document.findOne({
+            _id: req.params.id,
+            userId: req.user._id
+        }).select('filename fileId');
+        if (!document?.fileId) {
+            return res.status(404).json({ success: false, error: 'PDF file is unavailable. Please upload the document again.', statusCode: 404 });
+        }
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `inline; filename="${document.filename.replace(/["\\]/g, '_')}"`,
+            'Cache-Control': 'private, max-age=3600'
+        });
+        const stream = openPdfStream(document.fileId);
+        stream.on('error', next);
+        stream.pipe(res);
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 
 // @desc    Delete document by ID
@@ -440,7 +471,8 @@ export const deleteDocument = async (req, res, next) => {
             quizzes: archivedQuizzes
         });
 
-        // 5. Delete physical file from file system
+        // 5. Delete durable and legacy PDF files
+        await deletePdf(document.fileId).catch(() => {});
         if (document.filepath) {
             const localPath = getLocalPdfPath(document.filepath);
             if (localPath) {

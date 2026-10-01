@@ -21,6 +21,10 @@ const documentSchema = new mongoose.Schema({
         required: true,
 
     },
+    fileId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null
+    },
     fileHash: {
         type: String,
         default: '',
