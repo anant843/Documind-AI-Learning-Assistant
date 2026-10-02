@@ -236,7 +236,7 @@ const MultiDocChatPage = () => {
                             onClick={selectAllDocs}
                             className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline transition self-start sm:self-auto"
                         >
-                            {selectedDocIds.length === documents.length ? 'Deselect All' : 'Select All'}
+                            {documents.length > 0 && selectedDocIds.length === documents.length ? 'Deselect all' : 'Select all'}
                         </button>
                         {history.length > 0 && (
                             <button
