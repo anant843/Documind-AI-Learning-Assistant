@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FileText, Copy, Check, X, Sparkles, BookOpen, Zap, Calculator, HelpCircle, Printer } from 'lucide-react'
+import { FileText, Copy, ClipboardCheck, X, BookMarked, BookOpen, Gauge, Calculator, HelpCircle, Printer } from 'lucide-react'
 import MarkdownRenderer from '../common/MarkdownRenderer.jsx'
 import Spinner from '../common/Spinner.jsx'
 import aiService from '../../services/aiService.js'
@@ -56,8 +56,8 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
 
     const tabs = [
         { id: 'short', label: 'Short Notes', icon: FileText },
-        { id: 'exam', label: 'Exam High-Yield', icon: Sparkles },
-        { id: 'revision', label: 'Rapid Revision', icon: Zap },
+        { id: 'exam', label: 'Exam High-Yield', icon: BookMarked },
+        { id: 'revision', label: 'Rapid Revision', icon: Gauge },
         { id: 'formulas', label: 'Formulas & Definitions', icon: Calculator },
         { id: 'faqs', label: 'Exam FAQs', icon: HelpCircle },
     ];
@@ -68,7 +68,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                 {/* Modal Header */}
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/70 dark:bg-slate-900/90 no-print">
                     <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-100 dark:border-blue-800/40 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700 flex items-center justify-center">
                             <BookOpen className="h-5 w-5" />
                         </div>
                         <div>
@@ -90,7 +90,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             disabled={loading || !notes}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-xs disabled:opacity-50"
                         >
-                            {copied ? <Check className="h-3.5 w-3.5 text-cyan-500" /> : <Copy className="h-3.5 w-3.5" />}
+                            {copied ? <ClipboardCheck className="h-3.5 w-3.5 text-blue-500" /> : <Copy className="h-3.5 w-3.5" />}
                             <span>{copied ? 'Copied' : 'Copy'}</span>
                         </button>
                         <button
@@ -110,7 +110,7 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             onClick={() => setActiveTab(tab.id)}
                             className={`py-3 px-3 text-xs font-bold border-b-2 whitespace-nowrap transition flex items-center gap-1.5 ${
                                 activeTab === tab.id
-                                    ? 'border-blue-600 dark:border-cyan-400 text-blue-600 dark:text-cyan-400'
+                                    ? 'border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400'
                                     : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                             }`}
                         >

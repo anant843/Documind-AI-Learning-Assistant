@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import {
     Award,
-    Sparkles,
-    Send,
+    BookMarked,
     Mic,
     MicOff,
-    CheckCircle2,
-    XCircle,
     ChevronRight,
     RotateCcw,
     Loader2,
     Briefcase,
-    AlertCircle,
-    FileText,
-    Volume2,
-    VolumeX
 } from 'lucide-react'
 import PageHeader from '../../Components/common/PageHeader.jsx'
 import Spinner from '../../Components/common/Spinner.jsx'
@@ -74,7 +67,7 @@ const InterviewPage = () => {
                 window._speechRec.start()
                 setIsListening(true)
                 toast.success('Listening... State your technical answer clearly!')
-            } catch (err) {
+            } catch {
                 setIsListening(false)
             }
         }
@@ -92,7 +85,7 @@ const InterviewPage = () => {
                 if (ready.length > 0) {
                     setSelectedDocId(ready[0]._id)
                 }
-            } catch (err) {
+            } catch {
                 toast.error('Failed to load documents for interview')
             } finally {
                 setDocsLoading(false)
@@ -227,7 +220,7 @@ const InterviewPage = () => {
                                 disabled={starting || !selectedDocId}
                                 className="w-full py-3.5 rounded-xl bg-slate-900   text-white font-bold text-sm shadow-md hover: hover: transition flex items-center justify-center gap-2"
                             >
-                                {starting ? <Loader2 className="h-5 w-5 animate-spin" /> : <Sparkles className="h-5 w-5" />}
+                                {starting ? <Loader2 className="h-5 w-5 animate-spin" /> : <BookMarked className="h-5 w-5" />}
                                 <span>Start Technical Interview</span>
                             </button>
                         </div>
@@ -326,7 +319,7 @@ const InterviewPage = () => {
                                         <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Question {ev.questionNumber}</span>
                                         <span className={`text-xs font-black px-2.5 py-1 rounded-full ${
                                             ev.score >= 8 
-                                                ? 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60' 
+                                                ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' 
                                                 : ev.score >= 6 
                                                 ? 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60' 
                                                 : 'bg-rose-100 dark:bg-rose-950/70 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
@@ -353,14 +346,14 @@ const InterviewPage = () => {
                     <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900   text-white p-8 shadow-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
                             <div>
-                                <span className="text-xs font-bold uppercase tracking-wider text-blue-300">Interview Readiness Scorecard</span>
+                                <span className="text-xs font-bold text-blue-300">Interview Readiness Scorecard</span>
                                 <h2 className="text-3xl font-extrabold mt-1">Overall Rating: {calculateOverallScore()}%</h2>
                                 <p className="text-xs text-blue-200 mt-2">
                                     {calculateOverallScore() >= 80
-                                        ? '🔥 Strong Technical Mastery: Ready for technical screening!'
+                                        ? 'Strong technical mastery. Ready for a technical screening.'
                                         : calculateOverallScore() >= 60
-                                        ? '⚡ Competent: Solid foundation with minor conceptual gaps to polish.'
-                                        : '📖 Needs Revision: Review course notes and practice targeted quiz questions.'}
+                                        ? 'Solid foundation with a few concepts to review.'
+                                        : 'Review the source material and practice the weaker topics.'}
                                 </p>
                             </div>
                             <div className="h-20 w-20 rounded-xl bg-white/10  flex items-center justify-center text-4xl shrink-0 shadow-inner">
@@ -378,7 +371,7 @@ const InterviewPage = () => {
                                     <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Q{ev.questionNumber}: {ev.question}</span>
                                     <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
                                         ev.score >= 8 
-                                            ? 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60' 
+                                            ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' 
                                             : 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60'
                                     }`}>
                                         {ev.score}/10 Points
@@ -396,7 +389,7 @@ const InterviewPage = () => {
                                 </div>
 
                                 {ev.idealAnswer && (
-                                    <div className="p-3 bg-emerald-50/50 dark:bg-emerald-950/40 rounded-xl text-xs text-emerald-900 dark:text-emerald-200 border border-emerald-100/60 dark:border-emerald-900/50">
+                                    <div className="p-3 bg-blue-50/50 dark:bg-blue-950/40 rounded-xl text-xs text-blue-900 dark:text-blue-200 border border-blue-100/60 dark:border-blue-900/50">
                                         <span className="font-bold">Recommended Ideal Answer: </span>
                                         {ev.idealAnswer}
                                     </div>

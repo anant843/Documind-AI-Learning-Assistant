@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import {
-    Sparkles,
+    LibraryBig,
     Send,
     CheckSquare,
     Square,
@@ -65,7 +65,7 @@ const MultiDocChatPage = () => {
                 if (res?.data) {
                     setHistory(res.data)
                 }
-            } catch (err) {
+            } catch {
                 console.log('No previous multi-doc history found')
             }
         }
@@ -120,7 +120,7 @@ const MultiDocChatPage = () => {
                 recognitionRef.current.start()
                 setIsListening(true)
                 toast.success('Listening... Speak your multi-document question!')
-            } catch (err) {
+            } catch {
                 setIsListening(false)
             }
         }
@@ -217,8 +217,8 @@ const MultiDocChatPage = () => {
         <div className="flex flex-col flex-1 h-full min-h-0 gap-3 sm:gap-4">
             <div className="flex-shrink-0">
                 <PageHeader
-                    title="Multi-Document AI Chat"
-                    subtitle="Search and synthesize insights across multiple PDFs simultaneously."
+                    title="Ask across your library"
+                    subtitle="Choose the documents that should be searched, then ask one question across all of them."
                 />
             </div>
 
@@ -226,15 +226,15 @@ const MultiDocChatPage = () => {
             <div className="flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 sm:p-4 shadow-sm">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-2">
-                        <Layers className="h-4 w-4 text-blue-600 dark:text-cyan-400" />
+                        <Layers className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                         <h3 className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">
-                            Select Documents to Query ({selectedDocIds.length}/{documents.length} Selected)
+                            Sources ({selectedDocIds.length} of {documents.length})
                         </h3>
                     </div>
                     <div className="flex items-center gap-3">
                         <button
                             onClick={selectAllDocs}
-                            className="text-xs font-semibold text-blue-600 dark:text-cyan-400 hover:underline transition self-start sm:self-auto"
+                            className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline transition self-start sm:self-auto"
                         >
                             {selectedDocIds.length === documents.length ? 'Deselect All' : 'Select All'}
                         </button>
@@ -272,7 +272,7 @@ const MultiDocChatPage = () => {
                                     }`}
                                 >
                                     {isSelected ? (
-                                        <CheckSquare className="h-3.5 w-3.5 text-blue-600 dark:text-cyan-400 shrink-0" />
+                                        <CheckSquare className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
                                     ) : (
                                         <Square className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                                     )}
@@ -289,13 +289,11 @@ const MultiDocChatPage = () => {
                 {/* Messages area */}
                 <div ref={messagesContainerRef} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-5 space-y-4 bg-slate-50/40 dark:bg-slate-950/40">
                     {history.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center h-full text-center text-slate-500 dark:text-slate-400 max-w-md mx-auto p-6">
-                            <div className="h-14 w-14 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-800/50 flex items-center justify-center mb-3 shadow-inner">
-                                <Sparkles className="h-7 w-7" />
-                            </div>
-                            <h4 className="text-base font-semibold text-slate-800 dark:text-white">Ask Across All Your Notes</h4>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
-                                E.g., <span className="italic font-medium text-slate-700 dark:text-slate-300">"What is the difference between deadlock and starvation?"</span>
+                        <div className="mx-auto flex h-full max-w-md flex-col justify-center p-6 text-left">
+                            <LibraryBig className="mb-4 h-7 w-7 text-blue-600" />
+                            <h4 className="text-lg font-bold text-slate-900 dark:text-white">Search selected documents</h4>
+                            <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
+                                Try: <span className="font-medium text-slate-700 dark:text-slate-300">What do these sources disagree about?</span>
                             </p>
                         </div>
                     ) : (
@@ -303,16 +301,11 @@ const MultiDocChatPage = () => {
                             const isUser = msg.role === 'user'
                             return (
                                 <div key={index} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-                                    {!isUser && (
-                                        <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center mr-3 mt-1 shadow-sm">
-                                            <Sparkles className="h-4 w-4 text-blue-600 dark:text-cyan-400" />
-                                        </div>
-                                    )}
                                     <div
-                                        className={`max-w-2xl p-4 rounded-xl shadow-sm transition ${
+                                        className={`max-w-[85%] px-4 py-3 text-sm leading-6 sm:max-w-2xl ${
                                             isUser
-                                                ? 'bg-slate-900   dark: dark: text-white rounded-tr-none'
-                                                : 'bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-tl-none'
+                                                ? 'rounded-xl rounded-br-sm bg-slate-900 text-white dark:bg-blue-600'
+                                                : 'rounded-lg border border-slate-200 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100'
                                         }`}
                                     >
                                         {isUser ? (
@@ -345,7 +338,7 @@ const MultiDocChatPage = () => {
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <Volume2 className="h-3.5 w-3.5 text-blue-600 dark:text-cyan-400" />
+                                                            <Volume2 className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
                                                             <span>Listen</span>
                                                         </>
                                                     )}
@@ -360,8 +353,8 @@ const MultiDocChatPage = () => {
                     <div ref={messagesEndRef} />
                     {loading && (
                         <div className="flex items-center gap-3 p-3 bg-white/90 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 w-fit text-slate-600 dark:text-slate-300 text-xs">
-                            <Loader2 className="h-4 w-4 animate-spin text-blue-600 dark:text-cyan-400" />
-                            <span>Synthesizing answer across selected documents...</span>
+                            <Loader2 className="h-4 w-4 animate-spin text-blue-600 dark:text-blue-400" />
+                            <span>Comparing supporting passages…</span>
                         </div>
                     )}
                 </div>
@@ -394,13 +387,13 @@ const MultiDocChatPage = () => {
                                 : `Ask across ${selectedDocIds.length} selected documents...`
                         }
                         disabled={loading}
-                        className="flex-1 rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-60 bg-slate-50/50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400"
+                        className="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/15 disabled:opacity-60 dark:border-slate-700 dark:bg-slate-950 dark:text-white"
                     />
 
                     <button
                         type="submit"
                         disabled={loading || !message.trim() || selectedDocIds.length === 0}
-                        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900   text-white shadow-sm hover: hover: disabled:opacity-50 transition"
+                        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm transition hover:bg-blue-700 disabled:opacity-50"
                     >
                         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                     </button>

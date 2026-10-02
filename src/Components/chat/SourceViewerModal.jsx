@@ -1,10 +1,9 @@
 import React from 'react'
-import { FileText, ExternalLink, X, Bookmark, Target, CheckCircle2 } from 'lucide-react'
+import { FileText, ExternalLink, Bookmark, Target, ShieldCheck } from 'lucide-react'
 import Modal from '../common/Modal.jsx'
 import Button from '../common/Button.jsx'
-import { BASE_URL } from '../../utils/apiPaths.js'
 
-const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
+const SourceViewerModal = ({ isOpen, onClose, citation }) => {
   if (!citation) return null
 
   const page = citation.page || citation.pageNumber || 1
@@ -14,20 +13,17 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
 
   const handleOpenPdf = () => {
     if (citation.documentId) {
-      const pdfBase = `${BASE_URL}/api/documents/${citation.documentId}`
       window.open(`/documents/${citation.documentId}`, '_blank')
     }
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Source Citation & Verification">
+    <Modal isOpen={isOpen} onClose={onClose} title="Verify source">
       <div className="space-y-4 text-slate-800 dark:text-slate-200">
         {/* Header Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
           <div className="flex items-center gap-2 min-w-0">
-            <div className="h-8 w-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
-              <FileText className="h-4 w-4" />
-            </div>
+            <FileText className="h-5 w-5 shrink-0 text-blue-600" />
             <div className="min-w-0">
               <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate" title={docName}>
                 {docName}
@@ -42,7 +38,7 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
             <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/80 px-2.5 py-0.5 text-xs font-bold text-blue-700 dark:text-blue-300">
               <Bookmark className="h-3 w-3" /> Page {page}
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-800/80 px-2.5 py-0.5 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+            <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/80 px-2.5 py-0.5 text-xs font-bold text-blue-700 dark:text-blue-300">
               <Target className="h-3 w-3" /> {matchPct}% Match
             </span>
           </div>
@@ -50,12 +46,12 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
 
         {/* Highlighted Chunk Text Excerpt */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-            Verified Source Excerpt (Page {page})
+          <label className="mb-2 block text-xs font-semibold text-slate-500 dark:text-slate-400">
+            Excerpt from page {page}
           </label>
-          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/60 p-4 text-xs sm:text-sm font-mono leading-relaxed text-slate-800 dark:text-slate-200 max-h-64 overflow-y-auto shadow-inner">
+          <div className="max-h-64 overflow-y-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-7 text-slate-800 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-200">
             <p className="whitespace-pre-wrap select-text">
-              <mark className="bg-amber-200/80 dark:bg-amber-500/30 text-slate-900 dark:text-amber-100 rounded px-1 py-0.5">
+              <mark className="rounded bg-amber-200/80 px-1 py-0.5 text-amber-950 dark:bg-amber-500/30 dark:text-amber-100">
                 {chunkText}
               </mark>
             </p>
@@ -65,8 +61,8 @@ const SourceViewerModal = ({ isOpen, onClose, citation, onJumpToPage }) => {
         {/* Actions */}
         <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
           <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
-            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
-            <span>Strictly grounded in uploaded document context</span>
+            <ShieldCheck className="h-3.5 w-3.5 text-blue-600" />
+            <span>Retrieved from the uploaded PDF</span>
           </div>
           <div className="flex items-center gap-2">
             <Button variant="secondary" onClick={onClose}>

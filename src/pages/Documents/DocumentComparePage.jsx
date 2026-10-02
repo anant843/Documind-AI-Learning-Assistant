@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react'
 import {
     SplitSquareVertical,
     ArrowRightLeft,
-    Sparkles,
-    FileText,
     Loader2,
     Copy,
-    Check,
-    HelpCircle,
+    ClipboardCheck,
     Printer
 } from 'lucide-react'
 import PageHeader from '../../Components/common/PageHeader.jsx'
-import Spinner from '../../Components/common/Spinner.jsx'
 import MarkdownRenderer from '../../Components/common/MarkdownRenderer.jsx'
 import documentService from '../../services/documentService.js'
 import aiService from '../../services/aiService.js'
@@ -42,7 +38,7 @@ const DocumentComparePage = () => {
                     setDocId1(ready[0]._id)
                     setDocId2(ready[0]._id)
                 }
-            } catch (err) {
+            } catch {
                 toast.error('Failed to load documents')
             } finally {
                 setDocsLoading(false)
@@ -91,14 +87,14 @@ const DocumentComparePage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] items-center gap-4">
                     {/* Document 1 Selector */}
                     <div className="space-y-2">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        <label className="block text-xs font-bold text-slate-500 dark:text-slate-400">
                             Document A (Reference)
                         </label>
                         <select
                             value={docId1}
                             onChange={(e) => setDocId1(e.target.value)}
                             disabled={docsLoading}
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
+                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-slate-800 dark:text-slate-100"
                         >
                             {documents.map((d) => (
                                 <option key={d._id} value={d._id} className="dark:bg-slate-900 dark:text-slate-100">
@@ -115,14 +111,14 @@ const DocumentComparePage = () => {
 
                     {/* Document 2 Selector */}
                     <div className="space-y-2">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        <label className="block text-xs font-bold text-slate-500 dark:text-slate-400">
                             Document B (Target)
                         </label>
                         <select
                             value={docId2}
                             onChange={(e) => setDocId2(e.target.value)}
                             disabled={docsLoading}
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-semibold text-slate-800 dark:text-slate-100"
+                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-slate-800 dark:text-slate-100"
                         >
                             {documents.map((d) => (
                                 <option key={d._id} value={d._id} className="dark:bg-slate-900 dark:text-slate-100">
@@ -143,7 +139,7 @@ const DocumentComparePage = () => {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="e.g. Compare architectural complexity, efficiency, and real-world deployment cases..."
-                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950 px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600"
+                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950 px-4 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-600"
                     />
                 </div>
 
@@ -164,7 +160,7 @@ const DocumentComparePage = () => {
                 <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden animate-in fade-in zoom-in-95">
                     <div className="p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800 flex items-center justify-between">
                         <div>
-                            <span className="text-xs uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400">Analysis Matrix</span>
+                            <span className="text-xs uppercase font-bold tracking-wider text-blue-700 dark:text-blue-400">Analysis Matrix</span>
                             <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-0.5">
                                 {comparisonResult.doc1.title} <span className="text-slate-400 dark:text-slate-500">vs</span> {comparisonResult.doc2.title}
                             </h3>
@@ -182,7 +178,7 @@ const DocumentComparePage = () => {
                                 onClick={handleCopy}
                                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 shadow-xs transition"
                             >
-                                {copied ? <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                                {copied ? <ClipboardCheck className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" /> : <Copy className="h-3.5 w-3.5" />}
                                 <span>{copied ? 'Copied' : 'Copy Report'}</span>
                             </button>
                         </div>

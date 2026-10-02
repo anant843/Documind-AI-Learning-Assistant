@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
     X, ChevronLeft, ChevronRight, Maximize2, Minimize2, 
-    Printer, Presentation, Lightbulb, CheckCircle2, Sparkles, 
-    Layers, BookOpen, Loader2
+    Printer, Presentation, Lightbulb, BadgeCheck, BookMarked, Loader2
 } from 'lucide-react';
 import aiService from '../../services/aiService';
 
@@ -87,7 +86,7 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                         <div>
                             <div className="flex items-center gap-2">
                                 <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1">
-                                    <Sparkles className="h-3 w-3" /> AI Slide Deck
+                                    <BookMarked className="h-3 w-3" /> AI Slide Deck
                                 </span>
                                 <h3 className="text-base font-bold text-white truncate max-w-md">
                                     {documentTitle || 'Study Presentation'}
@@ -102,7 +101,7 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => setShowSpeakerNotes(prev => !prev)}
-                            className={`px-3 py-1.5 text-xs font-medium rounded-xl border transition-colors ${showSpeakerNotes ? 'bg-blue-600 text-white border-blue-500' : 'text-slate-300 border-slate-700 hover:bg-slate-800'}`}
+                            className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors ${showSpeakerNotes ? 'bg-blue-600 text-white border-blue-500' : 'text-slate-100 border-slate-600 hover:bg-slate-800'}`}
                             title="Toggle Presenter Notes"
                         >
                             <Lightbulb className="h-4 w-4 inline mr-1" /> Notes
@@ -146,7 +145,7 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             {/* Slide Title & Header */}
                             <div className="space-y-2 border-b border-slate-700/60 pb-6">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-blue-400">
+                                    <span className="text-xs font-bold text-blue-400">
                                         {currentSlide.subtitle || `Key Concept #${currentSlide.slideNumber}`}
                                     </span>
                                     <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
@@ -162,8 +161,8 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             <div className="space-y-4 py-2">
                                 {(currentSlide.bulletPoints || []).map((point, idx) => (
                                     <div key={idx} className="flex items-start gap-4">
-                                        <div className="p-1 rounded-full bg-emerald-500/20 text-emerald-400 mt-1 flex-shrink-0">
-                                            <CheckCircle2 className="h-4 w-4" />
+                                        <div className="p-1 rounded-full bg-blue-500/20 text-blue-400 mt-1 flex-shrink-0">
+                                            <BadgeCheck className="h-4 w-4" />
                                         </div>
                                         <p className="text-slate-200 text-base md:text-lg leading-relaxed font-normal">
                                             {point}
@@ -175,9 +174,9 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             {/* Executive Key Takeaway Callout */}
                             {currentSlide.keyTakeaway && (
                                 <div className="rounded-xl p-4 bg-blue-950/40 border border-blue-500/30 flex items-start gap-3">
-                                    <Sparkles className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                                    <BookMarked className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <p className="text-xs font-bold uppercase tracking-wider text-blue-300">Executive Takeaway</p>
+                                        <p className="text-xs font-bold text-blue-300">Executive Takeaway</p>
                                         <p className="text-sm text-blue-100 font-medium">{currentSlide.keyTakeaway}</p>
                                     </div>
                                 </div>

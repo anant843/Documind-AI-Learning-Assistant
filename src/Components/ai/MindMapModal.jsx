@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GitFork, X, ChevronRight, ChevronDown, Sparkles, Copy, Check, FolderTree } from 'lucide-react'
+import { X, ChevronRight, ChevronDown, Copy, ClipboardCheck, FolderTree } from 'lucide-react'
 import Spinner from '../common/Spinner.jsx'
 import aiService from '../../services/aiService.js'
 import toast from 'react-hot-toast'
@@ -10,17 +10,17 @@ const MindMapNode = ({ node, depth = 0 }) => {
     const hasChildren = node.children && node.children.length > 0
 
     return (
-        <div className={`space-y-2 ${depth > 0 ? 'ml-6 pl-4 border-l-2 border-cyan-200/80 dark:border-cyan-800/40' : ''}`}>
+        <div className={`space-y-2 ${depth > 0 ? 'ml-6 pl-4 border-l border-slate-200 dark:border-slate-700' : ''}`}>
             <div className="flex items-center gap-2 group">
                 {hasChildren ? (
                     <button
                         onClick={() => setExpanded(!expanded)}
-                        className="h-6 w-6 rounded-lg bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-950/60 dark:hover:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 flex items-center justify-center transition shrink-0"
+                        className="h-6 w-6 rounded-lg bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 flex items-center justify-center transition shrink-0"
                     >
                         {expanded ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
                     </button>
                 ) : (
-                    <div className="h-2 w-2 rounded-full bg-cyan-500 ml-2 mr-2 shrink-0" />
+                    <div className="h-2 w-2 rounded-full bg-blue-500 ml-2 mr-2 shrink-0" />
                 )}
 
                 <div
@@ -28,8 +28,8 @@ const MindMapNode = ({ node, depth = 0 }) => {
                         depth === 0
                             ? 'bg-slate-900   text-white text-sm py-2.5 px-4 shadow-md'
                             : depth === 1
-                            ? 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-900 dark:text-cyan-200 border border-cyan-200 dark:border-cyan-800/60'
-                            : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-cyan-300 dark:hover:border-cyan-500'
+                            ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-900 dark:text-blue-200 border border-blue-200 dark:border-blue-800/60'
+                            : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-500'
                     }`}
                 >
                     {node.name}
@@ -98,7 +98,7 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/90">
                     <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-800/40 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700 flex items-center justify-center">
                             <FolderTree className="h-5 w-5" />
                         </div>
                         <div>
@@ -112,7 +112,7 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                             disabled={loading || !mindMapData}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-xs disabled:opacity-50"
                         >
-                            {copied ? <Check className="h-3.5 w-3.5 text-cyan-500" /> : <Copy className="h-3.5 w-3.5" />}
+                            {copied ? <ClipboardCheck className="h-3.5 w-3.5 text-blue-500" /> : <Copy className="h-3.5 w-3.5" />}
                             <span>{copied ? 'Copied' : 'Copy Tree'}</span>
                         </button>
                         <button
