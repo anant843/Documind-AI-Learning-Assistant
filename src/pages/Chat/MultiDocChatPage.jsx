@@ -13,7 +13,7 @@ import {
     RotateCcw
 } from 'lucide-react'
 import PageHeader from '../../Components/common/PageHeader.jsx'
-import Spinner from '../../Components/common/Spinner.jsx'
+import { Skeleton } from '../../Components/common/LoadingState.jsx'
 import MarkdownRenderer from '../../Components/common/MarkdownRenderer.jsx'
 import CitationList from '../../Components/chat/CitationList.jsx'
 import documentService from '../../services/documentService.js'
@@ -252,8 +252,9 @@ const MultiDocChatPage = () => {
                 </div>
 
                 {docsLoading ? (
-                    <div className="py-2 flex justify-center">
-                        <Spinner size="sm" />
+                    <div className="mt-2.5 flex gap-2" aria-label="Loading documents">
+                        <Skeleton className="h-8 w-28 rounded-lg" />
+                        <Skeleton className="h-8 w-36 rounded-lg" />
                     </div>
                 ) : documents.length === 0 ? (
                     <p className="text-xs text-slate-500 mt-1">No ready documents found. Upload PDFs in the Documents tab.</p>

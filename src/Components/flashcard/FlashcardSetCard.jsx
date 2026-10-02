@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BookOpen, Sparkles, TrendingUp, Clock, BookMarked } from 'lucide-react'
+import { BookOpen, BookMarked, TrendingUp } from 'lucide-react'
 import moment from 'moment'
 
 const FlashcardSetCard = ({ flashcardSet }) => {
@@ -27,11 +27,11 @@ const FlashcardSetCard = ({ flashcardSet }) => {
             {/* Header */}
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 ring-1 ring-emerald-100 dark:ring-emerald-800/60">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 ring-1 ring-blue-100 dark:ring-blue-800/60">
                         <BookOpen className="h-6 w-6" />
                     </div>
                     <div className="flex flex-col gap-1 min-w-0">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400 inline-flex items-center gap-2">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-400 inline-flex items-center gap-2">
                             <BookMarked className="h-4 w-4" /> Flashcard Set
                         </p>
                         <h3
@@ -56,7 +56,7 @@ const FlashcardSetCard = ({ flashcardSet }) => {
                 <div className="rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 px-3 py-2">
                     <p className="text-slate-500 dark:text-slate-400 text-sm">Reviewed</p>
                     <div className="flex items-center gap-2 text-slate-900 dark:text-white font-semibold">
-                        <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                        <TrendingUp className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                         <span>{progressPercentage}%</span>
                     </div>
                 </div>
@@ -87,9 +87,9 @@ const FlashcardSetCard = ({ flashcardSet }) => {
                         e.stopPropagation()
                         handleStudyNow()
                     }}
-                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
                 >
-                    <Sparkles className="h-4 w-4" />
+                    <BookMarked className="h-4 w-4" />
                     Study now
                 </button>
             </div>

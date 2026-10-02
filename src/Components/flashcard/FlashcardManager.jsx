@@ -5,19 +5,17 @@ import {
   ChevronRight,
   Trash2,
   ArrowLeft,
-  Sparkles,
+  BookMarked,
   Printer,
   Award,
   Calendar,
-  CheckCircle2,
-  RefreshCw,
-  Zap,
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import moment from 'moment'
 import aiService from '../../services/aiService.js'
 import flashcardService from '../../services/flashcardService.js'
 import Spinner from '../common/Spinner.jsx'
+import { PageSkeleton } from '../common/LoadingState.jsx'
 import Modal from '../common/Modal'
 import Flashcard from './Flashcard.jsx'
 import { LogoIcon } from '../common/Logo'
@@ -90,7 +88,7 @@ const FlashcardManager = ({ documentId }) => {
       setSelectedSet(updatedSet);
 
       const days = rating === 'easy' ? 7 : rating === 'medium' ? 3 : 1;
-      toast.success(`Scheduled for review in ${days} day${days > 1 ? 's' : ''}! +10 XP 🔥`);
+      toast.success(`Scheduled for review in ${days} day${days > 1 ? 's' : ''}! · 10 XP`);
 
       // Advance to next card if available
       if (currentCardIndex < updatedSet.cards.length - 1) {
@@ -169,7 +167,7 @@ const FlashcardManager = ({ documentId }) => {
             <button
               type="button"
               onClick={() => setSelectedSet(null)}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1.5 rounded-xl transition"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-3 py-1.5 rounded-xl transition"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to sets
@@ -188,7 +186,7 @@ const FlashcardManager = ({ documentId }) => {
           <div className="flex items-center gap-4">
             <div className="text-right">
               <div className="flex items-center gap-1.5 justify-end text-xs font-bold text-slate-800 dark:text-white">
-                <Award className="h-3.5 w-3.5 text-amber-500" />
+                <Award className="h-3.5 w-3.5 text-indigo-500" />
                 <span>Deck Mastery: {masteryPct}%</span>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
@@ -213,14 +211,14 @@ const FlashcardManager = ({ documentId }) => {
             <div className="flex items-center gap-2">
               <span className={`px-2.5 py-0.5 rounded-full font-semibold text-[11px] flex items-center gap-1 border ${
                 currentCard.masteryStatus === 'mastered'
-                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                  ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800'
                   : currentCard.masteryStatus === 'reviewing'
-                  ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800'
+                  ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800'
                   : 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800'
               }`}>
-                {currentCard.masteryStatus === 'mastered' && '🏆 Mastered'}
-                {currentCard.masteryStatus === 'reviewing' && '🔄 Reviewing'}
-                {(!currentCard.masteryStatus || currentCard.masteryStatus === 'learning') && '🌱 Learning'}
+                {currentCard.masteryStatus === 'mastered' && 'Mastered'}
+                {currentCard.masteryStatus === 'reviewing' && 'Reviewing'}
+                {(!currentCard.masteryStatus || currentCard.masteryStatus === 'learning') && 'Learning'}
               </span>
 
               {currentCard.nextReviewDate && (
@@ -264,20 +262,20 @@ const FlashcardManager = ({ documentId }) => {
               type="button"
               onClick={() => handleSRSReview('medium')}
               disabled={srsLoading || !currentCard}
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-amber-200 dark:border-amber-900/60 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 transition shadow-xs disabled:opacity-50"
+              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Good</span>
-              <span className="text-[10px] text-amber-500 dark:text-amber-400">Review in 3 Days</span>
+              <span className="text-[10px] text-indigo-500 dark:text-indigo-400">Review in 3 Days</span>
             </button>
 
             <button
               type="button"
               onClick={() => handleSRSReview('easy')}
               disabled={srsLoading || !currentCard}
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition shadow-xs disabled:opacity-50"
+              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-900/60 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Easy</span>
-              <span className="text-[10px] text-emerald-500 dark:text-emerald-400">Review in 7 Days</span>
+              <span className="text-[10px] text-blue-500 dark:text-blue-400">Review in 7 Days</span>
             </button>
           </div>
         </div>
@@ -302,7 +300,7 @@ const FlashcardManager = ({ documentId }) => {
             type="button"
             onClick={handleNextCard}
             disabled={!totalCards}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-50 transition"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50 transition"
           >
             Next
             <ChevronRight className="h-4 w-4" />
@@ -315,9 +313,7 @@ const FlashcardManager = ({ documentId }) => {
   const renderSetList = () => {
     if (loading) {
       return (
-        <div className="flex items-center justify-center py-20">
-          <Spinner size="lg" />
-        </div>
+        <PageSkeleton variant="list" />
       )
     }
 
@@ -334,12 +330,12 @@ const FlashcardManager = ({ documentId }) => {
           <button
             onClick={handleGnerateFlashcards}
             disabled={generating}
-            className="mt-2 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-white text-sm font-semibold shadow-xs hover:bg-emerald-700 disabled:opacity-50 transition"
+            className="mt-2 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-white text-sm font-semibold shadow-xs hover:bg-blue-700 disabled:opacity-50 transition"
           >
             {generating ? (
               <><Spinner size="sm" /> Generating...</>
             ) : (
-              <><Sparkles className="h-4 w-4" /> Generate Flashcards</>
+              <><BookMarked className="h-4 w-4" /> Generate Flashcards</>
             )}
           </button>
         </div>
@@ -356,7 +352,7 @@ const FlashcardManager = ({ documentId }) => {
           <button
             onClick={handleGnerateFlashcards}
             disabled={generating}
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-white text-xs font-semibold shadow-xs hover:bg-emerald-700 disabled:opacity-50 transition"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-white text-xs font-semibold shadow-xs hover:bg-blue-700 disabled:opacity-50 transition"
           >
             {generating ? (
               <><Spinner size="sm" /> Generating...</>
@@ -406,11 +402,11 @@ const FlashcardManager = ({ documentId }) => {
                 <div className="space-y-1">
                   <div className="flex items-center justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-300">
                     <span>Mastery</span>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">{pct}%</span>
+                    <span className="text-blue-600 dark:text-blue-400 font-bold">{pct}%</span>
                   </div>
                   <div className="w-full h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                     <div
-                      className="h-full bg-emerald-500 rounded-full"
+                      className="h-full bg-blue-500 rounded-full"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -420,8 +416,8 @@ const FlashcardManager = ({ documentId }) => {
                   <span className="font-semibold text-slate-700 dark:text-slate-300">
                     {total} {total === 1 ? "card" : "cards"}
                   </span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-semibold group-hover:underline">
-                    Study with SRS →
+                  <span className="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">
+                    Study with SRS
                   </span>
                 </div>
               </div>

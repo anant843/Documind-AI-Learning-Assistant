@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Play, BarChart2, Trash2, Award, RotateCcw, HelpCircle, CheckCircle, Calendar } from 'lucide-react'
+import { Play, BarChart2, Trash2, Award, RotateCcw, HelpCircle, BadgeCheck, Calendar } from 'lucide-react'
 import moment from 'moment'
 
 const QuizCard = ({ quiz, onDelete, onRetake }) => {
@@ -21,14 +21,14 @@ const QuizCard = ({ quiz, onDelete, onRetake }) => {
         }
         if (score >= 80) {
             return {
-                bg: 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60',
+                bg: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
                 label: `${score}% Score`,
                 icon: Award
             }
         }
         if (score >= 50) {
             return {
-                bg: 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60',
+                bg: 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/60',
                 label: `${score}% Score`,
                 icon: Award
             }

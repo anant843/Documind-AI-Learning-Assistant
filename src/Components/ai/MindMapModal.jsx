@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { X, ChevronRight, ChevronDown, Copy, ClipboardCheck, FolderTree } from 'lucide-react'
-import Spinner from '../common/Spinner.jsx'
+import { Skeleton } from '../common/LoadingState.jsx'
 import aiService from '../../services/aiService.js'
 import toast from 'react-hot-toast'
 
@@ -127,9 +127,11 @@ const MindMapModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                 {/* Tree Visualization Area */}
                 <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30 dark:bg-slate-950/50">
                     {loading ? (
-                        <div className="py-20 flex flex-col items-center justify-center gap-3 text-slate-500 dark:text-slate-400">
-                            <Spinner size="lg" />
-                            <p className="text-xs font-medium">Extracting hierarchical concept tree from document...</p>
+                        <div className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900" aria-label="Building concept map">
+                            <Skeleton className="h-5 w-2/5" />
+                            <Skeleton className="ml-6 h-4 w-3/5" />
+                            <Skeleton className="ml-6 h-4 w-1/2" />
+                            <Skeleton className="ml-12 h-4 w-2/5" />
                         </div>
                     ) : mindMapData ? (
                         <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs">

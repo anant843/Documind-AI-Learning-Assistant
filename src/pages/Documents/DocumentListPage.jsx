@@ -3,7 +3,7 @@ import { Plus, Upload, Trash2, FileText, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import documentService from '../../services/documentService'
-import Spinner from '../../Components/common/Spinner'
+import { PageSkeleton } from '../../Components/common/LoadingState'
 import Button from '../../Components/common/Button'
 import DocumentCard from '../../Components/documents/DocumentCard'
 
@@ -133,11 +133,7 @@ const DocumentListPage = () => {
 
   const renderContent = () => {
     if (loading) {
-      return (
-        <div className="flex items-center justify-center py-16">
-          <Spinner size="lg" />
-        </div>
-      )
+      return <PageSkeleton variant="list" />
     }
 
     const docs = Array.isArray(documents) ? documents : [];
@@ -214,35 +210,35 @@ return (
           <form onSubmit={handleUpload} className='space-y-5'>
             <div className='space-y-2'>
               <label className='block text-sm font-medium text-slate-800'>Document Title</label>
-              <input 
-                type="text" 
-                className='w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30' 
-                placeholder='Enter document title' 
-                value={uploadTitle} 
-                onChange={(e) => setUploadTitle(e.target.value)} 
-                required 
+              <input
+                type="text"
+                className='w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30'
+                placeholder='Enter document title'
+                value={uploadTitle}
+                onChange={(e) => setUploadTitle(e.target.value)}
+                required
               />
             </div>
 
             <div className='space-y-2'>
               <label className='block text-sm font-medium text-slate-800'>Upload PDF</label>
               <div
-                className={`rounded-xl border-2 border-dashed p-6 text-center transition ${dragActive ? 'border-emerald-400 bg-emerald-50/50' : 'border-slate-200 bg-slate-50'}`}
+                className={`rounded-xl border-2 border-dashed p-6 text-center transition ${dragActive ? 'border-blue-400 bg-blue-50/50' : 'border-slate-200 bg-slate-50'}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
               >
                 <div className="flex flex-col items-center gap-2 text-slate-600">
-                  <Upload className="h-6 w-6 text-emerald-500" />
+                  <Upload className="h-6 w-6 text-blue-500" />
                   <p className="text-sm">Drag & drop your PDF here, or</p>
-                  <label className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-400 cursor-pointer">
+                  <label className="inline-flex items-center gap-2 rounded-lg bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-blue-400 cursor-pointer">
                     <Upload className="h-4 w-4" />
                     <span>Browse files</span>
-                    <input 
-                      type="file" 
-                      accept="application/pdf" 
-                      onChange={handleFileChange} 
-                      className="hidden" 
+                    <input
+                      type="file"
+                      accept="application/pdf"
+                      onChange={handleFileChange}
+                      className="hidden"
                     />
                   </label>
                   {uploadFile && <p className="text-xs text-slate-500">Selected: {uploadFile.name}</p>}

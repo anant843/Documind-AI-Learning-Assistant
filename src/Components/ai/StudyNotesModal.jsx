@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FileText, Copy, ClipboardCheck, X, BookMarked, BookOpen, Gauge, Calculator, HelpCircle, Printer } from 'lucide-react'
 import MarkdownRenderer from '../common/MarkdownRenderer.jsx'
-import Spinner from '../common/Spinner.jsx'
+import { Skeleton } from '../common/LoadingState.jsx'
 import aiService from '../../services/aiService.js'
 import toast from 'react-hot-toast'
 
@@ -123,9 +123,13 @@ const StudyNotesModal = ({ isOpen, onClose, documentId, documentTitle }) => {
                 {/* Body Content */}
                 <div className="flex-1 overflow-y-auto p-6 bg-slate-50/40 dark:bg-slate-950/50">
                     {loading ? (
-                        <div className="py-20 flex flex-col items-center justify-center gap-3 text-slate-500 dark:text-slate-400">
-                            <Spinner size="lg" />
-                            <p className="text-xs font-medium">Synthesizing comprehensive study notes, formulas & FAQs...</p>
+                        <div className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900" aria-label="Preparing study notes">
+                            <Skeleton className="h-6 w-1/3" />
+                            <Skeleton className="h-4 w-full" />
+                            <Skeleton className="h-4 w-11/12" />
+                            <Skeleton className="h-4 w-4/5" />
+                            <Skeleton className="mt-7 h-5 w-1/4" />
+                            <Skeleton className="h-4 w-full" />
                         </div>
                     ) : (
                         <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-xs leading-relaxed text-sm text-slate-800 dark:text-slate-200 printable-card">

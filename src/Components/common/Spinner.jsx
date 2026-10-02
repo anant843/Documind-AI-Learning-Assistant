@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Lightweight spinner that matches the emerald accent used on auth forms
+// Small progress indicator for short inline actions. Full pages use skeletons.
 const Spinner = ({ size = 'md', className = '' }) => {
   const sizeMap = {
     sm: 'h-4 w-4',
@@ -17,7 +17,7 @@ const Spinner = ({ size = 'md', className = '' }) => {
       aria-label="Loading"
     >
       <span
-        className={`animate-spin rounded-full border-2 border-emerald-500 border-t-transparent ${dimension}`}
+        className={`animate-spin rounded-full border-2 border-slate-300 border-t-blue-600 dark:border-slate-700 dark:border-t-blue-400 ${dimension}`}
       />
     </span>
   );

@@ -10,7 +10,7 @@ import {
     Briefcase,
 } from 'lucide-react'
 import PageHeader from '../../Components/common/PageHeader.jsx'
-import Spinner from '../../Components/common/Spinner.jsx'
+import { Skeleton } from '../../Components/common/LoadingState.jsx'
 import documentService from '../../services/documentService.js'
 import aiService from '../../services/aiService.js'
 import toast from 'react-hot-toast'
@@ -182,11 +182,12 @@ const InterviewPage = () => {
                     </div>
 
                     {docsLoading ? (
-                        <div className="py-6 flex justify-center">
-                            <Spinner size="md" />
+                        <div className="space-y-3 py-2" aria-label="Loading documents">
+                            <Skeleton className="h-4 w-28" />
+                            <Skeleton className="h-11 w-full rounded-lg" />
                         </div>
                     ) : documents.length === 0 ? (
-                        <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-xs border border-amber-200 dark:border-amber-900/50">
+                        <div className="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300 text-xs border border-indigo-200 dark:border-indigo-900/50">
                             Please upload and process at least one PDF in the Documents tab first.
                         </div>
                     ) : (
@@ -318,10 +319,10 @@ const InterviewPage = () => {
                                     <div className="flex items-center justify-between">
                                         <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Question {ev.questionNumber}</span>
                                         <span className={`text-xs font-black px-2.5 py-1 rounded-full ${
-                                            ev.score >= 8 
-                                                ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' 
-                                                : ev.score >= 6 
-                                                ? 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60' 
+                                            ev.score >= 8
+                                                ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60'
+                                                : ev.score >= 6
+                                                ? 'bg-indigo-100 dark:bg-indigo-950/70 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60'
                                                 : 'bg-rose-100 dark:bg-rose-950/70 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
                                         }`}>
                                             Score: {ev.score}/10
@@ -357,7 +358,7 @@ const InterviewPage = () => {
                                 </p>
                             </div>
                             <div className="h-20 w-20 rounded-xl bg-white/10  flex items-center justify-center text-4xl shrink-0 shadow-inner">
-                                <Award className="h-10 w-10 text-amber-400" />
+                                <Award className="h-10 w-10 text-indigo-400" />
                             </div>
                         </div>
                     </div>
@@ -370,9 +371,9 @@ const InterviewPage = () => {
                                 <div className="flex items-center justify-between">
                                     <span className="text-xs font-bold text-slate-500 dark:text-slate-400">Q{ev.questionNumber}: {ev.question}</span>
                                     <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
-                                        ev.score >= 8 
-                                            ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' 
-                                            : 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60'
+                                        ev.score >= 8
+                                            ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60'
+                                            : 'bg-indigo-100 dark:bg-indigo-950/70 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60'
                                     }`}>
                                         {ev.score}/10 Points
                                     </span>

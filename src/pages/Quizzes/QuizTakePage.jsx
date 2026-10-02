@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight, CheckCircle, ArrowLeft, AlertCircle, HelpCircle, BookOpen } from 'lucide-react'
+import { ChevronLeft, ChevronRight, BadgeCheck, ArrowLeft, AlertCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import quizService from '../../services/quizService.js'
 import PageHeader from '../../Components/common/PageHeader.jsx'
 import Button from '../../Components/common/Button.jsx'
 import Spinner from '../../Components/common/Spinner.jsx'
+import { PageSkeleton } from '../../Components/common/LoadingState.jsx'
 import Modal from '../../Components/common/Modal.jsx'
 
 const QuizTakePage = () => {
@@ -126,11 +127,7 @@ const QuizTakePage = () => {
     }
 
     if (loading) {
-        return (
-            <div className="flex min-h-[60vh] items-center justify-center">
-                <Spinner size="lg" />
-            </div>
-        )
+        return <PageSkeleton />
     }
 
     if (!quiz || !Array.isArray(quiz.questions) || quiz.questions.length === 0) {
@@ -165,7 +162,7 @@ const QuizTakePage = () => {
                 </Link>
 
                 <span className="text-xs text-slate-500 dark:text-slate-400 hidden sm:inline">
-                    Use keys <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">A</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">B</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">C</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">D</kbd> to answer
+                    Use keys <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-semibold text-[10px]">A</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-semibold text-[10px]">B</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-semibold text-[10px]">C</kbd> <kbd className="px-1.5 py-0.5 rounded-sm bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-semibold text-[10px]">D</kbd> to answer
                 </span>
             </div>
 
@@ -179,7 +176,7 @@ const QuizTakePage = () => {
                     <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 font-medium">
                         <span>Question <strong className="text-slate-900 dark:text-white text-base font-bold">{currentQuestionIndex + 1}</strong> of {totalQuestions}</span>
                         <span className="text-slate-300 dark:text-slate-700">•</span>
-                        <span>Answered <strong className="text-emerald-600 dark:text-emerald-400 font-bold">{answeredCount}</strong>/{totalQuestions}</span>
+                        <span>Answered <strong className="text-blue-600 dark:text-blue-400 font-bold">{answeredCount}</strong>/{totalQuestions}</span>
                     </div>
 
                     <div className="w-full sm:w-60">
@@ -222,14 +219,14 @@ const QuizTakePage = () => {
                                 onClick={() => handleOptionSelect(currentQuestionIndex, optId)}
                                 className={`flex cursor-pointer items-center justify-between rounded-xl border p-4 transition-all ${
                                     isSelected
-                                        ? 'border-emerald-500 bg-emerald-50/70 dark:bg-emerald-950/30 ring-2 ring-emerald-500/20 text-slate-900 dark:text-white shadow-xs'
+                                        ? 'border-blue-500 bg-blue-50/70 dark:bg-blue-950/30 ring-2 ring-blue-500/20 text-slate-900 dark:text-white shadow-xs'
                                         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
                                 }`}
                             >
                                 <div className="flex items-center gap-3.5 w-full">
                                     <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-sm font-bold transition ${
                                         isSelected
-                                            ? 'bg-emerald-600 text-white shadow-xs'
+                                            ? 'bg-blue-600 text-white shadow-xs'
                                             : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
                                     }`}>
                                         {optId}
@@ -269,7 +266,7 @@ const QuizTakePage = () => {
                                         isCurrent
                                             ? 'border-blue-600 bg-blue-600 text-white shadow-xs scale-105'
                                             : isAnswered
-                                                ? 'border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
+                                                ? 'border-blue-300 dark:border-blue-800 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300'
                                                 : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600'
                                     }`}
                                     title={`Go to Question ${index + 1}`}
@@ -302,7 +299,7 @@ const QuizTakePage = () => {
                                     <Spinner size="sm" />
                                 ) : (
                                     <>
-                                        <CheckCircle className="mr-1.5 h-4 w-4" />
+                                        <BadgeCheck className="mr-1.5 h-4 w-4" />
                                         Submit Quiz
                                     </>
                                 )}
@@ -319,7 +316,7 @@ const QuizTakePage = () => {
                 title="Unanswered Questions"
             >
                 <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-amber-600 dark:text-amber-400">
+                    <div className="flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
                         <AlertCircle className="h-6 w-6 shrink-0" />
                         <p className="text-sm font-medium">
                             You have <strong className="font-bold">{unansweredCount}</strong> unanswered question(s). Unanswered questions will be evaluated as incorrect.

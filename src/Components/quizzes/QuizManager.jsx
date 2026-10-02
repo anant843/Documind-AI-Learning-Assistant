@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Trash2, Sparkles, BookOpen, Award, CheckCircle, HelpCircle, RotateCcw } from 'lucide-react'
+import { Trash2, BookMarked, BookOpen, Award, BadgeCheck, HelpCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import quizService from '../../services/quizService.js'
 import aiService from '../../services/aiService.js'
 import Spinner from '../common/Spinner.jsx'
+import { PageSkeleton } from '../common/LoadingState.jsx'
 import Button from '../common/Button.jsx'
 import Modal from '../common/Modal.jsx'
 import QuizCard from './QuizCard.jsx'
@@ -128,7 +129,7 @@ const QuizManager = ({ documentId }) => {
                     </div>
 
                     <Button onClick={() => setIsGenerateModalOpen(true)} className="shrink-0 shadow-xs">
-                        <Sparkles className="mr-2 h-4 w-4" />
+                        <BookMarked className="mr-2 h-4 w-4" />
                         Generate New Quiz
                     </Button>
                 </div>
@@ -147,8 +148,8 @@ const QuizManager = ({ documentId }) => {
                         </div>
 
                         <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 p-3 border border-slate-100 dark:border-slate-800">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                                <CheckCircle className="h-4 w-4" />
+                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+                                <BadgeCheck className="h-4 w-4" />
                             </div>
                             <div>
                                 <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase">Completed</p>
@@ -157,7 +158,7 @@ const QuizManager = ({ documentId }) => {
                         </div>
 
                         <div className="flex items-center gap-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 p-3 border border-slate-100 dark:border-slate-800">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
                                 <Award className="h-4 w-4" />
                             </div>
                             <div>
@@ -173,9 +174,7 @@ const QuizManager = ({ documentId }) => {
 
             {/* Quiz Cards Grid or Loading/Empty State */}
             {loading ? (
-                <div className="flex items-center justify-center min-h-[220px] rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <Spinner size="lg" />
-                </div>
+                <PageSkeleton variant="list" />
             ) : quizzes.length === 0 ? (
                 <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8">
                     <EmptyState
@@ -184,7 +183,7 @@ const QuizManager = ({ documentId }) => {
                     />
                     <div className="mt-4 flex justify-center">
                         <Button onClick={() => setIsGenerateModalOpen(true)}>
-                            <Sparkles className="mr-2 h-4 w-4" />
+                            <BookMarked className="mr-2 h-4 w-4" />
                             Generate First Quiz
                         </Button>
                     </div>
@@ -298,8 +297,8 @@ const QuizManager = ({ documentId }) => {
                         </label>
                         <div className="grid grid-cols-3 gap-2">
                             {[
-                                { id: 'easy', label: 'Easy', desc: 'Core Definitions', color: 'border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300' },
-                                { id: 'medium', label: 'Medium', desc: 'Mechanisms & Tradeoffs', color: 'border-amber-500 bg-amber-50/80 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300' },
+                                { id: 'easy', label: 'Easy', desc: 'Core Definitions', color: 'border-blue-500 bg-blue-50/80 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300' },
+                                { id: 'medium', label: 'Medium', desc: 'Mechanisms & Tradeoffs', color: 'border-indigo-500 bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300' },
                                 { id: 'hard', label: 'Hard', desc: 'Deep Analysis', color: 'border-rose-500 bg-rose-50/80 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300' },
                             ].map((level) => (
                                 <button

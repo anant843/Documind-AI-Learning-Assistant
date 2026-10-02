@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import flashcardService from '../../services/flashcardService'
 import PageHeader from '../../Components/common/PageHeader'
-import Spinner from '../../Components/common/Spinner'
+import { PageSkeleton } from '../../Components/common/LoadingState'
 import EmptyState from '../../Components/common/EmptyState'
 import FlashcardSetCard from '../../Components/flashcard/FlashcardSetCard.jsx'
 import toast from 'react-hot-toast'
@@ -29,11 +29,7 @@ const FlashcardListPage = () => {
 
   const renderContent = () => {
     if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <Spinner size="lg" />
-        </div>
-      )
+      return <PageSkeleton variant="list" />
     }
 
     if (flashcardSets.length === 0) {

@@ -6,20 +6,17 @@ import {
     Award,
     BookOpen,
     Trash2,
-    Calendar,
     ChevronDown,
     ChevronUp,
     Search,
-    CheckCircle2,
     Clock,
-    AlertCircle,
-    ArrowRight
+    ChevronRight
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import toast from 'react-hot-toast'
 import progressService from '../../services/progressService'
-import Spinner from '../../Components/common/Spinner'
+import { PageSkeleton } from '../../Components/common/LoadingState'
 
 const HistoryPage = () => {
     const [loading, setLoading] = useState(true)
@@ -90,7 +87,7 @@ const HistoryPage = () => {
                 },
                 items: []
             })
-        } catch (err) {
+        } catch {
             toast.error('Failed to clear history')
         }
     }
@@ -114,11 +111,7 @@ const HistoryPage = () => {
     )
 
     if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <Spinner size="lg" />
-            </div>
-        )
+        return <PageSkeleton variant="list" />
     }
 
     const summaryCards = [
@@ -134,7 +127,7 @@ const HistoryPage = () => {
             value: summary.totalHistoricalQuizzes || 0,
             icon: TrendingUp,
             color: ' ',
-            textColor: 'text-amber-600 dark:text-amber-400'
+            textColor: 'text-indigo-600 dark:text-indigo-400'
         },
         {
             label: 'Historical Avg Score',
@@ -240,7 +233,7 @@ const HistoryPage = () => {
                             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition"
                         >
                             <span>Go to Documents</span>
-                            <ArrowRight className="h-3.5 w-3.5" />
+                            <ChevronRight className="h-3.5 w-3.5" />
                         </Link>
                     </div>
                 </div>
@@ -280,9 +273,9 @@ const HistoryPage = () => {
                                             <span
                                                 className={`font-semibold px-2.5 py-0.5 rounded-full border ${
                                                     isHigh
-                                                        ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800'
+                                                        ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800'
                                                         : isMid
-                                                        ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800'
+                                                        ? 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800'
                                                         : 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800'
                                                 }`}
                                             >
@@ -369,9 +362,9 @@ const HistoryPage = () => {
                                                                 <span
                                                                     className={`font-bold px-2.5 py-1 rounded-lg ${
                                                                         quiz.score >= 70
-                                                                            ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
+                                                                            ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
                                                                             : quiz.score >= 50
-                                                                            ? 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800'
+                                                                            ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800'
                                                                             : 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-800'
                                                                     }`}
                                                                 >

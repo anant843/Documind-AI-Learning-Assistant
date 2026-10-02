@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FileText, BookOpen, ListChecks, Clock, ArrowUpRight } from "lucide-react";
 import toast from "react-hot-toast";
-import Spinner from "../../Components/common/Spinner";
+import { PageSkeleton } from "../../Components/common/LoadingState";
 import progressService from "../../services/progressService";
 
 const DashboardPage = () => {
   const [data,setData]=useState(null); const [loading,setLoading]=useState(true);
   useEffect(()=>{progressService.getDashboard().then(r=>setData(r?.data||r)).catch(e=>toast.error(e.message||"Could not load your workspace.")).finally(()=>setLoading(false));},[]);
-  if(loading)return <div className="grid min-h-[60vh] place-items-center"><Spinner size="lg"/></div>;
+  if(loading)return <PageSkeleton />;
   const overview=data?.overview||{};
   const stats=[
     ["Documents",overview.totalDocuments??0,FileText,"/documents"],

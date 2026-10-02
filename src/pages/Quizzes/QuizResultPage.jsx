@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle, XCircle, Trophy, Target, BookOpen, Printer, RotateCcw, Award, Sparkles } from 'lucide-react'
+import { ArrowLeft, BadgeCheck, XCircle, Trophy, Target, BookOpen, Printer, RotateCcw, BookMarked } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import quizService from '../../services/quizService.js'
 import PageHeader from '../../Components/common/PageHeader.jsx'
 import Spinner from '../../Components/common/Spinner.jsx'
+import { PageSkeleton } from '../../Components/common/LoadingState.jsx'
 import Button from '../../Components/common/Button.jsx'
 
 const QuizResultPage = () => {
@@ -44,9 +45,7 @@ const QuizResultPage = () => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <Spinner size="lg" />
-            </div>
+            <PageSkeleton />
         )
     }
 
@@ -73,7 +72,7 @@ const QuizResultPage = () => {
                 title: "Outstanding Mastery!",
                 desc: "You demonstrated deep understanding of the concepts in this document.",
                 gradient: " ",
-                badgeBg: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30"
+                badgeBg: "bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30"
             }
         }
         if (s >= 50) {
@@ -81,7 +80,7 @@ const QuizResultPage = () => {
                 title: "Solid Comprehension!",
                 desc: "Good grasp of core concepts. Review the explanations below to refine weak areas.",
                 gradient: " ",
-                badgeBg: "bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30"
+                badgeBg: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/30"
             }
         }
         return {
@@ -133,7 +132,7 @@ const QuizResultPage = () => {
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ${feedback.badgeBg}`}>
-                                <Sparkles className="h-3.5 w-3.5" />
+                                <BookMarked className="h-3.5 w-3.5" />
                                 {feedback.title}
                             </span>
                             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">
@@ -175,7 +174,7 @@ const QuizResultPage = () => {
                         </div>
                         <div className="flex items-center justify-between text-slate-600 dark:text-slate-400">
                             <span>Correct Answers</span>
-                            <strong className="text-emerald-600 dark:text-emerald-400 font-bold">{correctAnswers}</strong>
+                            <strong className="text-blue-600 dark:text-blue-400 font-bold">{correctAnswers}</strong>
                         </div>
                         <div className="flex items-center justify-between text-slate-600 dark:text-slate-400">
                             <span>Incorrect Answers</span>
@@ -184,8 +183,8 @@ const QuizResultPage = () => {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200/80 dark:border-slate-800">
-                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300">
-                            <CheckCircle className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" /> {correctAnswers} Correct
+                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-blue-500/15 border border-blue-500/30 px-3 py-1 text-xs font-bold text-blue-700 dark:text-blue-300">
+                            <BadgeCheck className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" /> {correctAnswers} Correct
                         </span>
                         <span className="inline-flex items-center gap-1.5 rounded-xl bg-rose-500/15 border border-rose-500/30 px-3 py-1 text-xs font-bold text-rose-700 dark:text-rose-300">
                             <XCircle className="h-3.5 w-3.5 text-rose-600 dark:text-rose-400" /> {incorrectAnswers} Incorrect
@@ -217,7 +216,7 @@ const QuizResultPage = () => {
                                 key={item?._id || `result-q-${index}`}
                                 className={`rounded-xl border p-5 sm:p-6 transition ${
                                     isCorrect
-                                        ? 'border-emerald-500/30 bg-emerald-50/30 dark:bg-emerald-950/20'
+                                        ? 'border-blue-500/30 bg-blue-50/30 dark:bg-blue-950/20'
                                         : 'border-rose-500/30 bg-rose-50/30 dark:bg-rose-950/20'
                                 }`}
                             >
@@ -236,12 +235,12 @@ const QuizResultPage = () => {
 
                                     <span className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-1 text-xs font-bold border shadow-xs ${
                                         isCorrect
-                                            ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300"
+                                            ? "bg-blue-500/15 border-blue-500/30 text-blue-700 dark:text-blue-300"
                                             : "bg-rose-500/15 border-rose-500/30 text-rose-700 dark:text-rose-300"
                                     }`}>
                                         {isCorrect ? (
                                             <>
-                                                <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> Correct
+                                                <BadgeCheck className="h-4 w-4 text-blue-600 dark:text-blue-400" /> Correct
                                             </>
                                         ) : (
                                             <>
@@ -268,7 +267,7 @@ const QuizResultPage = () => {
 
                                             let optionStyle = "border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300"
                                             if (isOptCorrect) {
-                                                optionStyle = "border-emerald-500 bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-950 dark:text-emerald-200 font-semibold ring-1 ring-emerald-500"
+                                                optionStyle = "border-blue-500 bg-blue-100/70 dark:bg-blue-950/60 text-blue-950 dark:text-blue-200 font-semibold ring-1 ring-blue-500"
                                             } else if (isOptSelected && !isCorrect) {
                                                 optionStyle = "border-rose-400 bg-rose-100/70 dark:bg-rose-950/60 text-rose-950 dark:text-rose-200 font-semibold"
                                             }
@@ -287,8 +286,8 @@ const QuizResultPage = () => {
                                                     </span>
 
                                                     {isOptCorrect && (
-                                                        <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 shrink-0">
-                                                            <CheckCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" /> Correct
+                                                        <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 dark:text-blue-300 shrink-0">
+                                                            <BadgeCheck className="h-4 w-4 text-blue-600 dark:text-blue-400" /> Correct
                                                         </span>
                                                     )}
 

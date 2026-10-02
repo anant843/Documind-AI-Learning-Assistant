@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Send, MessageSquare, BookOpenCheck, Loader2, Volume2, VolumeX, Mic, MicOff } from 'lucide-react'
+import { Send, BookOpenCheck, Loader2, Volume2, VolumeX, Mic, MicOff } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import aiService from '../../services/aiService.js'
 import { useAuth } from '../../context/AuthContext'
-import Spinner from '../common/Spinner'
+import { ChatSkeleton } from '../common/LoadingState.jsx'
 import MarkdownRenderer from '../common/MarkdownRenderer.jsx'
 import toast from 'react-hot-toast'
 
@@ -226,19 +226,7 @@ const ChatInterface = ({ onNavigateToPage = null }) => {
     }
 
     if (initialLoading) {
-        return (
-            <div className="flex flex-col w-full h-[70vh] max-h-[70vh] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                <div className="flex-1 overflow-y-auto p-6 flex items-center justify-center text-slate-500">
-                    <div className="flex items-center gap-3">
-                        <MessageSquare strokeWidth={2} className="h-5 w-5 animate-pulse text-blue-600" />
-                        <span className="text-sm font-medium">Loading conversation history...</span>
-                    </div>
-                </div>
-                <div className="p-4 border-t border-slate-200 flex justify-center">
-                    <Spinner size="sm" />
-                </div>
-            </div>
-        )
+        return <ChatSkeleton />
     }
 
     return (

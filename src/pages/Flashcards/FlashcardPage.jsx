@@ -6,6 +6,7 @@ import flashcardService from '../../services/flashcardService'
 import aiService from '../../services/aiService'
 import PageHeader from '../../Components/common/PageHeader'
 import Spinner from '../../Components/common/Spinner'
+import { PageSkeleton } from '../../Components/common/LoadingState'
 import EmptyState from '../../Components/common/EmptyState'
 import Button from '../../Components/common/Button'
 import Modal from '../../Components/common/Modal'
@@ -121,7 +122,7 @@ const FlashcardPage = () => {
       setFlashcards(updatedSet.cards || [])
 
       const days = rating === 'easy' ? 7 : rating === 'medium' ? 3 : 1
-      toast.success(`Scheduled for review in ${days} day${days > 1 ? 's' : ''}! +10 XP 🔥`)
+      toast.success(`Scheduled for review in ${days} day${days > 1 ? 's' : ''}! · 10 XP`)
 
       if (currentCardIndex < (updatedSet.cards?.length || 0) - 1) {
         setCurrentCardIndex((prev) => prev + 1)
@@ -135,11 +136,7 @@ const FlashcardPage = () => {
 
   const renderFlashcardContent = () => {
     if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-[50vh]">
-          <Spinner size="lg" />
-        </div>
-      )
+      return <PageSkeleton />
     }
 
     if (!hasCards) {
@@ -182,20 +179,20 @@ const FlashcardPage = () => {
               type="button"
               onClick={() => handleSRSReview('medium')}
               disabled={srsLoading || !currentCard}
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-amber-200 dark:border-amber-900/60 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 transition shadow-xs disabled:opacity-50"
+              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Good</span>
-              <span className="text-[10px] text-amber-500 dark:text-amber-400">Review in 3 Days</span>
+              <span className="text-[10px] text-indigo-500 dark:text-indigo-400">Review in 3 Days</span>
             </button>
 
             <button
               type="button"
               onClick={() => handleSRSReview('easy')}
               disabled={srsLoading || !currentCard}
-              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-emerald-200 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition shadow-xs disabled:opacity-50"
+              className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-900/60 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Easy</span>
-              <span className="text-[10px] text-emerald-500 dark:text-emerald-400">Review in 7 Days</span>
+              <span className="text-[10px] text-blue-500 dark:text-blue-400">Review in 7 Days</span>
             </button>
           </div>
         </div>

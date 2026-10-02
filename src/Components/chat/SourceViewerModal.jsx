@@ -51,7 +51,7 @@ const SourceViewerModal = ({ isOpen, onClose, citation }) => {
           </label>
           <div className="max-h-64 overflow-y-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-7 text-slate-800 dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-200">
             <p className="whitespace-pre-wrap select-text">
-              <mark className="rounded bg-amber-200/80 px-1 py-0.5 text-amber-950 dark:bg-amber-500/30 dark:text-amber-100">
+              <mark className="rounded bg-indigo-200/80 px-1 py-0.5 text-indigo-950 dark:bg-indigo-500/30 dark:text-indigo-100">
                 {chunkText}
               </mark>
             </p>

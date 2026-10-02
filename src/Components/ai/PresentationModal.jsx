@@ -184,8 +184,8 @@ const PresentationModal = ({ isOpen, onClose, documentId, documentTitle }) => {
 
                             {/* Speaker Notes Drawer (Optional) */}
                             {showSpeakerNotes && currentSlide.speakerNotes && (
-                                <div className="rounded-xl p-4 bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200 space-y-1 no-print">
-                                    <p className="font-bold flex items-center gap-1.5 text-amber-400">
+                                <div className="rounded-xl p-4 bg-indigo-950/30 border border-indigo-500/30 text-xs text-indigo-200 space-y-1 no-print">
+                                    <p className="font-bold flex items-center gap-1.5 text-indigo-400">
                                         <Lightbulb className="h-3.5 w-3.5" /> Presenter Delivery Cue:
                                     </p>
                                     <p>{currentSlide.speakerNotes}</p>

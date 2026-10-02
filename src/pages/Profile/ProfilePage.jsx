@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Mail, User, Lock, Award, Flame, Sparkles, Clock, MessageSquare } from 'lucide-react'
+import { Mail, User, Lock, Award, Flame, BookMarked, Clock, MessageSquare } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/AuthContext'
 import authService from '../../services/authService'
-import Spinner from '../../Components/common/Spinner'
+import { Skeleton } from '../../Components/common/LoadingState'
 
 const ProfilePage = () => {
   const { user, updateUser } = useAuth()
@@ -92,7 +92,7 @@ const ProfilePage = () => {
       <div className="space-y-6">
         <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-emerald-50 text-emerald-600">
+            <div className="p-3 rounded-xl bg-blue-50 text-blue-600">
               <User className="h-5 w-5" />
             </div>
             <div>
@@ -102,8 +102,9 @@ const ProfilePage = () => {
           </div>
 
           {loadingProfile ? (
-            <div className="flex items-center justify-center py-8">
-              <Spinner />
+            <div className="space-y-5 py-2" aria-label="Loading profile">
+              <div className="space-y-2"><Skeleton className="h-4 w-20" /><Skeleton className="h-12 w-full" /></div>
+              <div className="space-y-2"><Skeleton className="h-4 w-14" /><Skeleton className="h-12 w-full" /></div>
             </div>
           ) : (
               <div className="space-y-4">
@@ -146,7 +147,7 @@ const ProfilePage = () => {
         <div className="rounded-xl border border-slate-200 bg-white shadow-sm p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-amber-50 text-amber-600">
+              <div className="p-3 rounded-xl bg-indigo-50 text-indigo-600">
                 <Award className="h-5 w-5" />
               </div>
               <div>
@@ -166,7 +167,7 @@ const ProfilePage = () => {
             </div>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
               <p className="text-xs text-slate-500 font-medium">Daily Streak</p>
-              <p className="text-xl font-bold text-amber-600 mt-1 flex items-center gap-1">
+              <p className="text-xl font-bold text-indigo-600 mt-1 flex items-center gap-1">
                 <Flame className="h-5 w-5" /> {profile.streak?.current || 1}d
               </p>
             </div>
@@ -191,7 +192,7 @@ const ProfilePage = () => {
               {(profile.badges || []).length > 0 ? (
                 profile.badges.map((b, i) => (
                   <div key={i} className="flex items-center gap-2 p-2.5 px-3 rounded-xl bg-slate-50 border border-slate-200">
-                    <span className="text-xl">{b.icon || '🏅'}</span>
+                    <Award className="h-4 w-4 text-slate-500" />
                     <div>
                       <p className="text-xs font-bold text-slate-900">{b.name}</p>
                       <p className="text-[10px] text-slate-500">{b.description}</p>
@@ -199,9 +200,9 @@ const ProfilePage = () => {
                   </div>
                 ))
               ) : (
-                <div className="flex items-center gap-2 p-2.5 px-3 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs font-medium">
-                  <Sparkles className="h-4 w-4 text-emerald-600" />
-                  <span>🌱 First Step: Welcome to AI Learning Assistant!</span>
+                <div className="flex items-center gap-2 p-2.5 px-3 rounded-xl bg-blue-50 border border-blue-100 text-blue-800 text-xs font-medium">
+                  <BookMarked className="h-4 w-4 text-blue-600" />
+                  <span>First step: Welcome to your learning workspace.</span>
                 </div>
               )}
             </div>
@@ -229,7 +230,7 @@ const ProfilePage = () => {
                 </div>
                 <input
                   type="password"
-                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 border-slate-200"
+                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 border-slate-200"
                   value={passwords.currentPassword}
                   onChange={(e) => handlePasswordInput('currentPassword', e.target.value)}
                   autoComplete="current-password"
@@ -245,7 +246,7 @@ const ProfilePage = () => {
                 </div>
                 <input
                   type="password"
-                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 border-slate-200"
+                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 border-slate-200"
                   value={passwords.newPassword}
                   onChange={(e) => handlePasswordInput('newPassword', e.target.value)}
                   autoComplete="new-password"
@@ -261,7 +262,7 @@ const ProfilePage = () => {
                 </div>
                 <input
                   type="password"
-                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 border-slate-200"
+                  className="w-full rounded-xl border bg-white pl-11 pr-4 py-3 text-slate-900 placeholder:text-slate-400 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 border-slate-200"
                   value={passwords.confirmPassword}
                   onChange={(e) => handlePasswordInput('confirmPassword', e.target.value)}
                   autoComplete="new-password"

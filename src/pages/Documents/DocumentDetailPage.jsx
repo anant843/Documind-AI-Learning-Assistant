@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import documentService from '../../services/documentService.js'
-import Spinner from '../../Components/common/Spinner.jsx'
+import { PageSkeleton, Skeleton } from '../../Components/common/LoadingState.jsx'
 import toast from 'react-hot-toast'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 import PageHeader from '../../Components/common/PageHeader.jsx'
 import Tabs from '../../Components/common/Tabs.jsx'
 import ChatInterface from '../../Components/chat/ChatInterface.jsx'
 import AiAction from '../../Components/ai/AiAction.jsx'
-import Flashcard from '../../Components/flashcard/Flashcard.jsx'
 import FlashcardManager from '../../Components/flashcard/FlashcardManager.jsx'
 import QuizManager from '../../Components/quizzes/QuizManager.jsx'
 
@@ -70,7 +69,7 @@ const DocumentDetailPage = () => {
       return <p className="text-center text-slate-600 dark:text-slate-300 p-8">{pdfError}</p>;
     }
     if (!pdfObjectUrl) {
-      return <Spinner />;
+      return <Skeleton className="h-[72vh] min-h-[560px] w-full rounded-xl" />;
     }
     const pdfUrl = getPdfUrl(targetPage);
 
@@ -143,7 +142,7 @@ const DocumentDetailPage = () => {
   ];
 
   if (loading) {
-    return <Spinner />;
+    return <PageSkeleton />;
   }
 
   if (!document) {

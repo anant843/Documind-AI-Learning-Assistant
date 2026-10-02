@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Star, RotateCcw, Sparkles } from 'lucide-react'
+import { Bookmark, RotateCcw, BookMarked } from 'lucide-react'
 
 const Flashcard = ({ flashcard, onToggleStar }) => {
     const [isFlipped, setIsFlipped] = useState(false)
@@ -23,8 +23,8 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
     const getDifficultyStyles = (difficulty) => {
         const level = difficulty?.toLowerCase() || 'medium'
         const styles = {
-            easy: 'bg-emerald-100 text-emerald-800 ring-emerald-300 dark:bg-emerald-950 dark:text-emerald-300 dark:ring-emerald-700',
-            medium: 'bg-amber-100 text-amber-800 ring-amber-300 dark:bg-amber-950 dark:text-amber-300 dark:ring-amber-700',
+            easy: 'bg-blue-100 text-blue-800 ring-blue-300 dark:bg-blue-950 dark:text-blue-300 dark:ring-blue-700',
+            medium: 'bg-indigo-100 text-indigo-800 ring-indigo-300 dark:bg-indigo-950 dark:text-indigo-300 dark:ring-indigo-700',
             hard: 'bg-rose-100 text-rose-800 ring-rose-300 dark:bg-rose-950 dark:text-rose-300 dark:ring-rose-700'
         }
         return styles[level] || styles.medium
@@ -49,7 +49,7 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
                     <div className="flex items-center justify-between gap-3 border-b border-slate-200/80 dark:border-slate-700/80 pb-3">
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 dark:bg-blue-400/20 px-3 py-1 text-xs font-bold text-blue-700 dark:text-blue-300 border border-blue-500/30">
-                            <Sparkles className="h-3.5 w-3.5" /> Question
+                            <BookMarked className="h-3.5 w-3.5" /> Question
                         </div>
                         <div className="flex items-center gap-2">
                             <div className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ring-1 ${getDifficultyStyles(flashcard.difficulty)}`}>
@@ -59,9 +59,9 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
                                 type="button"
                                 onClick={handleStar}
                                 aria-label={flashcard.isStarred ? 'Unstar flashcard' : 'Star flashcard'}
-                                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-200/60 dark:bg-slate-700/70 text-amber-500 dark:text-amber-400 shadow-xs border border-slate-300/80 dark:border-slate-600/80 transition hover:scale-105"
+                                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-200/60 dark:bg-slate-700/70 text-indigo-500 dark:text-indigo-400 shadow-xs border border-slate-300/80 dark:border-slate-600/80 transition hover:scale-105"
                             >
-                                <Star className={`h-4 w-4 ${flashcard.isStarred ? 'fill-amber-400' : 'text-slate-400 dark:text-slate-400'}`} />
+                                <Bookmark className={`h-4 w-4 ${flashcard.isStarred ? 'fill-indigo-400' : 'text-slate-400 dark:text-slate-400'}`} />
                             </button>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
                     <div className="flex items-center justify-between gap-3 border-b border-white/20 pb-3">
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-white">
-                            <Sparkles className="h-3.5 w-3.5" /> Answer
+                            <BookMarked className="h-3.5 w-3.5" /> Answer
                         </div>
                         <div className="flex items-center gap-2">
                             <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold bg-white/15 text-white">
@@ -99,9 +99,9 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
                                 type="button"
                                 onClick={handleStar}
                                 aria-label={flashcard.isStarred ? 'Unstar flashcard' : 'Star flashcard'}
-                                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-amber-300 transition hover:scale-105"
+                                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-indigo-300 transition hover:scale-105"
                             >
-                                <Star className={`h-4 w-4 ${flashcard.isStarred ? 'fill-amber-300' : 'text-white/60'}`} />
+                                <Bookmark className={`h-4 w-4 ${flashcard.isStarred ? 'fill-indigo-300' : 'text-white/60'}`} />
                             </button>
                         </div>
                     </div>

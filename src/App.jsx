@@ -18,12 +18,13 @@ import InterviewPage from './pages/Interview/InterviewPage'
 import HistoryPage from './pages/History/HistoryPage'
 import { useAuth } from './context/AuthContext.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
+import { AppBootSkeleton } from './Components/common/LoadingState.jsx'
 
 function App() {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return <div className='flex items-center h-screen'><p>Loading...</p></div>
+    return <AppBootSkeleton />
   }
 
 
