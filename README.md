@@ -2,6 +2,8 @@
 
 > **An Intelligent, Full-Stack Educational Platform** powered by **Retrieval-Augmented Generation (RAG)**, **Dense Vector Embeddings**, **Spaced Repetition (SuperMemo-2)**, **Multi-Document Intelligence**, **Voice Interaction**, and **Gamified Analytics**.
 
+**Live application:** [https://documind-ai-learning.vercel.app/](https://documind-ai-learning.vercel.app/)
+
 [![React 18](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS v4](https://img.shields.io/badge/TailwindCSS-v4.1-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
