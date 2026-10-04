@@ -42,10 +42,10 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
             >
                 {/* Front Side (Question) */}
                 <div
-                    className="flashcard-front absolute inset-0 rounded-xl p-6 md:p-8 flex flex-col justify-between overflow-hidden"
+                    className="flashcard-front absolute inset-0 flex flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900 md:p-8"
                     style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-slate-900   " />
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-blue-600 dark:bg-blue-500" />
 
                     <div className="flex items-center justify-between gap-3 border-b border-slate-200/80 dark:border-slate-700/80 pb-3">
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/15 dark:bg-blue-400/20 px-3 py-1 text-xs font-bold text-blue-700 dark:text-blue-300 border border-blue-500/30">
@@ -82,10 +82,10 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
                 {/* Back Side (Answer) */}
                 <div
-                    className="flashcard-back absolute inset-0 rotateY-180 rounded-xl p-6 md:p-8 text-white flex flex-col justify-between overflow-hidden"
+                    className="flashcard-back absolute inset-0 flex rotateY-180 flex-col justify-between overflow-hidden rounded-xl border border-slate-800 bg-slate-900 p-6 text-white shadow-sm dark:border-blue-800 dark:bg-blue-950 md:p-8"
                     style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                 >
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-slate-900   " />
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-blue-500" />
 
                     <div className="flex items-center justify-between gap-3 border-b border-white/20 pb-3">
                         <div className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-white">

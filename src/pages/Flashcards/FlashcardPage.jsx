@@ -172,7 +172,7 @@ const FlashcardPage = () => {
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Hard</span>
-              <span className="text-[10px] text-rose-500 dark:text-rose-400">Review in 1 Day</span>
+              <span className="text-[10px] text-rose-700 dark:text-rose-300">Review in 1 Day</span>
             </button>
 
             <button
@@ -182,7 +182,7 @@ const FlashcardPage = () => {
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Good</span>
-              <span className="text-[10px] text-indigo-500 dark:text-indigo-400">Review in 3 Days</span>
+              <span className="text-[10px] text-indigo-700 dark:text-indigo-300">Review in 3 Days</span>
             </button>
 
             <button
@@ -192,7 +192,7 @@ const FlashcardPage = () => {
               className="flex flex-col items-center justify-center p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-200 dark:border-blue-900/60 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition shadow-xs disabled:opacity-50"
             >
               <span className="text-xs font-bold">Easy</span>
-              <span className="text-[10px] text-blue-500 dark:text-blue-400">Review in 7 Days</span>
+              <span className="text-[10px] text-blue-700 dark:text-blue-300">Review in 7 Days</span>
             </button>
           </div>
         </div>
