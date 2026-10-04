@@ -1,4 +1,8 @@
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+// Keep production browser requests on the frontend origin. Vercel proxies /api
+// to the backend, which avoids browser CORS, DNS, and extension blocking issues.
+export const BASE_URL = import.meta.env.PROD
+    ? ""
+    : (import.meta.env.VITE_API_BASE_URL || "http://localhost:8000");
 
 export const API_PATHS = {
     AUTH: {

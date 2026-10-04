@@ -2,7 +2,11 @@ import axiosInstance from "../utils/axioInstance";
 import { API_PATHS } from "../utils/apiPaths";
 
 const formatError = (error) => {
-	const msg = error?.response?.data?.error || error?.message || "Request failed";
+	const msg = error?.response?.data?.error
+		|| (error?.code === "ERR_NETWORK"
+			? "Unable to reach the server. Check your connection and try again."
+			: error?.message)
+		|| "Request failed";
 	const status = error?.response?.status;
 	const err = new Error(msg);
 	if (status) err.status = status;
